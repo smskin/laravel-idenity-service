@@ -1,11 +1,11 @@
 <?php
 
-use SMSkin\IdentityServiceClient\Guard\Enums\Scope;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum as AuthDriverEnum;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum as OAuthDriverEnum;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\LogDriver;
 use SMSkin\IdentityService\Modules\Sms\Enums\DriverEnum as SmsDriverEnum;
+use SMSkin\IdentityServiceClient\Enums\Scope;
 
 return [
     'name' => env('IDENTITY_SERVICE_NAME', 'Identity service'),
