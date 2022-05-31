@@ -31,7 +31,7 @@ class CSyncScopeGroupsAndScopes extends BaseController
         $scopeIds = [];
 
         $groups = $this->getScopeGroupsEnum();
-        foreach ($groups as $groupEnum) {
+        foreach ($groups::items() as $groupEnum) {
             $group = $this->getGroup($groupEnum);
             foreach ($groupEnum->scopes as $scopeEnum) {
                 $scope = $this->updateScope($group, $scopeEnum);
@@ -87,6 +87,10 @@ class CSyncScopeGroupsAndScopes extends BaseController
 
     private function dropUnusedGroups(array $groupIds)
     {
+        if (!count($groupIds)) {
+            return;
+        }
+
         app(DeleteScopeGroupsExcludeRequested::class, [
             'request' => (new DeleteScopesGroupsExcludeRequestedRequest())
                 ->setIds($groupIds)
@@ -95,6 +99,10 @@ class CSyncScopeGroupsAndScopes extends BaseController
 
     private function dropUnusedScopes(array $scopeIds)
     {
+        if (!count($scopeIds)) {
+            return;
+        }
+
         app(DeleteScopesExcludeRequested::class, [
             'request' => (new DeleteScopesExcludeRequestedRequest())
                 ->setIds($scopeIds)
