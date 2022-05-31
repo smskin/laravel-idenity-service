@@ -14,7 +14,7 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ValidateCredentia
 use SMSkin\IdentityService\Modules\Auth\Exceptions\CredentialWithThisIdentifyNotExists;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use Illuminate\Validation\ValidationException;
 
 class EmailModule extends BaseModule

@@ -6,7 +6,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\CredentialWithThisIdentifyNot
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
 use SMSkin\IdentityService\Modules\Auth\Requests\DeleteCredentialRequest;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class CDeleteCredential extends BaseController

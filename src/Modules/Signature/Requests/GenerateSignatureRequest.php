@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Signature\Requests;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class GenerateSignatureRequest extends BaseRequest
 {

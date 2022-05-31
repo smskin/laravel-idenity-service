@@ -11,8 +11,8 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
 use SMSkin\IdentityService\Modules\Auth\Requests\AssignPhoneToUserRequest;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class CAssignPhoneToUser extends BaseController

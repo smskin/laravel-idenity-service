@@ -5,8 +5,8 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Controllers;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions\MarkVerificationAsCanceled;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ExistVerificationRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CMarkVerificationAsCanceled extends BaseController
 {

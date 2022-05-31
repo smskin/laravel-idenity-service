@@ -90,7 +90,7 @@ class EmailController extends Controller
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
-                    $this->getSystemChangeScope()->value
+                    $this->getSystemChangeScope()
                 ])
         );
 

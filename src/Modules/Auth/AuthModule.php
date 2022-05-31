@@ -20,7 +20,7 @@ use SMSkin\IdentityService\Modules\Auth\Requests\LoginRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\RegisterRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\SendPhoneVerificationCodeRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\ValidateRequest;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 

@@ -8,7 +8,6 @@ use SMSkin\IdentityService\Modules\Auth\Commands\GenerateOAuthSignature;
 class ServiceProvider extends BaseServiceProvider
 {
     /**
-     * http://localhost:81/identity-service/oauth/github?callback-url=http://localhost:81/test&key=bsdsbj&signature=872e0f9cf2f1aaf643d275e80777a58cfaec3c81
      * Register any application services.
      *
      * @return void

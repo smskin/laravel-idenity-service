@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityService\Modules\Sms\Drivers\Log;
 
 use Illuminate\Validation\ValidationException;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\Sms\Contracts\Driver;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\Controllers\CSendMessage;
 use SMSkin\IdentityService\Modules\Sms\Requests\SendMessageRequest;

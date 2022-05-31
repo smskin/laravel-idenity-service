@@ -9,7 +9,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidScopes;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
 use SMSkin\IdentityService\Modules\Auth\Requests\LoginRequest;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class CLogin extends BaseController

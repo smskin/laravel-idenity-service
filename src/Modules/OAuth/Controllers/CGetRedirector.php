@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityService\Modules\OAuth\Controllers;
 
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\OAuth\Exceptions\DriverCredentialsNotDefined;
 use SMSkin\IdentityService\Modules\OAuth\Exceptions\InvalidSignature;
 use SMSkin\IdentityService\Modules\OAuth\Requests\GetRedirectorRequest;

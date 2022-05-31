@@ -5,7 +5,7 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 use SMSkin\IdentityService\Models\UserEmailVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\RemoveVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistVerificationRequest;
-use SMSkin\IdentityService\Modules\Core\BaseController;
+use SMSkin\LaravelSupport\BaseController;
 use Illuminate\Support\Collection;
 
 class CRemoveInactiveVerifications extends BaseController

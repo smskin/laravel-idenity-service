@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Requests;
 
-use SMSkin\IdentityService\Modules\Core\Rules\PhoneRule;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\Rules\PhoneRule;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class SendPhoneVerificationCodeRequest extends BaseRequest
 {

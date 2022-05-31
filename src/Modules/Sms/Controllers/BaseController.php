@@ -6,7 +6,7 @@ use SMSkin\IdentityService\Modules\Sms\Contracts\Driver;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\LogDriver;
 use SMSkin\IdentityService\Modules\Sms\Enums\DriverEnum;
 
-abstract class BaseController extends \SMSkin\IdentityService\Modules\Core\BaseController
+abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
 {
     protected string $method;
 

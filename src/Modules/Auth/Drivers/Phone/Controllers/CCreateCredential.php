@@ -7,8 +7,8 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions\CreateCredentialCo
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\CreateCredentialRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CCreateCredential extends BaseController
 {

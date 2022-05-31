@@ -8,10 +8,10 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Driver as PhoneDriver;
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\BaseRequest as AuthBaseRequest;
 
-abstract class BaseController extends \SMSkin\IdentityService\Modules\Core\BaseController
+abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
 {
     protected AuthBaseRequest|BaseRequest|null $request;
 

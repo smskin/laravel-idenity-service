@@ -15,7 +15,8 @@
     "laravel/socialite": "^5.5",
     "miladrahimi/php-jwt": "^2.1",
     "smskin/laravel-identity-service-client": "dev-main",
-    "zircote/swagger-php": "^4.4"
+    "zircote/swagger-php": "^4.4",
+    "smskin/laravel-support": "^1.0"
   },
   "extra": {
     "laravel": {

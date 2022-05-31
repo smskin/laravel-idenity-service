@@ -8,8 +8,8 @@ use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyInitialized;
 use SMSkin\IdentityService\Modules\Auth\Requests\SendPhoneVerificationCodeRequest;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class SendPhoneVerificationCode extends BaseController

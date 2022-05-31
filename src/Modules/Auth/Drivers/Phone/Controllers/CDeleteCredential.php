@@ -5,7 +5,7 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Controllers;
 use SMSkin\IdentityService\Modules\Auth\Controllers\BaseController;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions\DeleteCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ExistCredentialRequest;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CDeleteCredential extends BaseController
 {

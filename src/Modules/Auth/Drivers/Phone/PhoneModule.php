@@ -19,7 +19,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyInitialized;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use Illuminate\Validation\ValidationException;
 
 class PhoneModule extends BaseModule

@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class ValidateCredentialRequest extends BaseRequest
 {

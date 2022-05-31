@@ -5,8 +5,8 @@ namespace SMSkin\IdentityService\Modules\User\Requests\Scope;
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\Scope;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
-use SMSkin\IdentityService\Modules\Core\Rules\ExistsEloquentModelRule;
+use SMSkin\LaravelSupport\BaseRequest;
+use SMSkin\LaravelSupport\Rules\ExistsEloquentModelRule;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 
 class AssignScopeToUserRequest extends BaseRequest

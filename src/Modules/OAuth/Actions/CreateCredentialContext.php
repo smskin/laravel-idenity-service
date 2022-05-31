@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\OAuth\Actions;
 
 use SMSkin\IdentityService\Models\UserOAuthCredential;
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\OAuth\Requests\CreateCredentialRequest;
 
 class CreateCredentialContext extends BaseAction

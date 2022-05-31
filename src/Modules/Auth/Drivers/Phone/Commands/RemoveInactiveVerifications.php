@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Commands;
 
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Controllers\CRemoveInactiveVerifications;
-use SMSkin\IdentityService\Modules\Core\BaseCommand;
+use SMSkin\LaravelSupport\BaseCommand;
 
 class RemoveInactiveVerifications extends BaseCommand
 {

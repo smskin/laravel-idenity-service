@@ -4,12 +4,12 @@ namespace SMSkin\IdentityService\Modules\OAuth\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\Rules\ExistsEloquentModelRule;
-use SMSkin\IdentityService\Modules\Core\Rules\InstanceOfRule;
+use SMSkin\LaravelSupport\Rules\ExistsEloquentModelRule;
+use SMSkin\LaravelSupport\Rules\InstanceOfRule;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 
-class CreateCredentialRequest extends \SMSkin\IdentityService\Modules\Core\BaseRequest
+class CreateCredentialRequest extends \SMSkin\LaravelSupport\BaseRequest
 {
     use ClassFromConfig;
 

@@ -4,8 +4,8 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
 use SMSkin\IdentityService\Models\UserEmailCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ValidateCredentialRequest;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Support\Facades\Hash;
 
 class CValidateCredential extends BaseController

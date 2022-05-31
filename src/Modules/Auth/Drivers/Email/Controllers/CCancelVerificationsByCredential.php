@@ -7,8 +7,8 @@ use SMSkin\IdentityService\Models\UserEmailVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistCredentialRequest;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistVerificationRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Support\Collection;
 
 class CCancelVerificationsByCredential extends BaseController

@@ -4,10 +4,10 @@ namespace SMSkin\IdentityService\Modules\Auth\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\Rules\ExistsEloquentModelRule;
+use SMSkin\LaravelSupport\Rules\ExistsEloquentModelRule;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 
-class AssignEmailToUserRequest extends \SMSkin\IdentityService\Modules\Core\BaseRequest
+class AssignEmailToUserRequest extends \SMSkin\LaravelSupport\BaseRequest
 {
     use ClassFromConfig;
 

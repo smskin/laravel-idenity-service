@@ -5,7 +5,7 @@ namespace SMSkin\IdentityService\Modules\OAuth\Drivers\Github;
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\RegistrationDisabled;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\OAuth\Contracts\Driver;
 use SMSkin\IdentityService\Modules\OAuth\Drivers\Github\Controllers\CGetRedirector;
 use SMSkin\IdentityService\Modules\OAuth\Drivers\Github\Controllers\CProcessCallback;

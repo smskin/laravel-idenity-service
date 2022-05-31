@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityService\Http\Api\Requests\Auth\Phone;
 
 use SMSkin\IdentityService\Modules\Auth\Support\Helpers;
-use SMSkin\IdentityService\Modules\Core\Rules\PhoneRule;
+use SMSkin\LaravelSupport\Rules\PhoneRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterByPhoneRequest extends FormRequest

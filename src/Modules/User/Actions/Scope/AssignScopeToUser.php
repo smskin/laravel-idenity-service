@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\User\Actions\Scope;
 
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\User\Requests\Scope\AssignScopeToUserRequest;
 
 class AssignScopeToUser extends BaseAction

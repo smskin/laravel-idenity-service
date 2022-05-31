@@ -4,9 +4,9 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests;
 
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
-use SMSkin\IdentityService\Modules\Core\Rules\ExistsEloquentModelRule;
-use SMSkin\IdentityService\Modules\Core\Rules\PhoneRule;
+use SMSkin\LaravelSupport\BaseRequest;
+use SMSkin\LaravelSupport\Rules\ExistsEloquentModelRule;
+use SMSkin\LaravelSupport\Rules\PhoneRule;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 
 class CreateCredentialRequest extends BaseRequest

@@ -10,8 +10,8 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
 use SMSkin\IdentityService\Modules\Auth\Requests\AssignEmailToUserRequest;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class CAssignEmail extends BaseController

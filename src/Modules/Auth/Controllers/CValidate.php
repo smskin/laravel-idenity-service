@@ -5,7 +5,7 @@ namespace SMSkin\IdentityService\Modules\Auth\Controllers;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
 use SMSkin\IdentityService\Modules\Auth\Requests\ValidateRequest;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
 
 class CValidate extends BaseController

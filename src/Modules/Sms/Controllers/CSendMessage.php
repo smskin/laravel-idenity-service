@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Sms\Controllers;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Sms\Requests\SendMessageRequest;
 
 class CSendMessage extends BaseController

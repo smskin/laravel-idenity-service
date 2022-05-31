@@ -6,8 +6,8 @@ use SMSkin\IdentityService\Models\UserPhoneVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ExistVerificationRequest;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ValidateCredentialsRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Support\Facades\Hash;
 
 class CValidateVerifyCode extends BaseController

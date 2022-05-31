@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\OAuth\Requests;
 
-use SMSkin\IdentityService\Modules\Core\Rules\InstanceOfRule;
+use SMSkin\LaravelSupport\Rules\InstanceOfRule;
 use SMSkin\IdentityService\Modules\OAuth\Models\Callback;
 
 class GetRedirectorRequest extends BaseRequest

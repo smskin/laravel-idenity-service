@@ -5,8 +5,8 @@ namespace SMSkin\IdentityService\Modules\User\Controllers\User;
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\Scope;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\User\Actions\Scope\AssignScopeToUser;
 use SMSkin\IdentityService\Modules\User\Actions\User\CreateUserContext;
 use SMSkin\IdentityService\Modules\User\Requests\Scope\AssignScopeToUserRequest;
@@ -35,7 +35,7 @@ class CCreateUser extends BaseController
         app(AssignScopeToUser::class, [
             'request' => (new AssignScopeToUserRequest)
                 ->setUser($user)
-                ->setScope(Scope::where('slug', $this->getSystemChangeScope()->value)->firstOrFail())
+                ->setScope(Scope::where('slug', $this->getSystemChangeScope())->firstOrFail())
         ])->execute();
     }
 

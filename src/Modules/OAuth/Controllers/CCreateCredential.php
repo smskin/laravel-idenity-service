@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\OAuth\Controllers;
 
 use SMSkin\IdentityService\Models\UserOAuthCredential;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\OAuth\Actions\CreateCredentialContext;
 use SMSkin\IdentityService\Modules\OAuth\Exceptions\CredentialWithThisRemoteIdAlreadyExists;
 use SMSkin\IdentityService\Modules\OAuth\Requests\CreateCredentialRequest;

@@ -5,7 +5,7 @@ namespace SMSkin\IdentityService\Modules\OAuth\Controllers;
 use SMSkin\IdentityService\Http\Api\Resources\Auth\RJwt;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\RegistrationDisabled;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Jwt\JwtModule;
 use SMSkin\IdentityService\Modules\Jwt\Models\Jwt;
 use SMSkin\IdentityService\Modules\Jwt\Requests\GenerateAccessTokenByUserRequest;

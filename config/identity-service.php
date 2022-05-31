@@ -5,13 +5,17 @@ use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum as AuthDriverEnum;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum as OAuthDriverEnum;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\LogDriver;
 use SMSkin\IdentityService\Modules\Sms\Enums\DriverEnum as SmsDriverEnum;
-use SMSkin\IdentityServiceClient\Enums\Scope;
+use SMSkin\IdentityServiceClient\Enums\ScopeGroups;
+use SMSkin\IdentityServiceClient\Enums\Scopes;
 
 return [
     'name' => env('IDENTITY_SERVICE_NAME', 'Identity service'),
     'classes' => [
         'models' => [
             'user' => User::class,
+        ],
+        'enums' => [
+            'scope-groups' => ScopeGroups::class
         ]
     ],
     'security' => [
@@ -23,7 +27,7 @@ return [
                 'active' => env('IDENTITY_SERVICE_MODULE_AUTH_REGISTRATION_ACTIVE', false)
             ],
             'scopes' => [
-                'system-change-scope' => Scope::SYSTEM_CHANGE_SCOPES
+                'system-change-scope' => Scopes::SYSTEM_CHANGE_SCOPES
             ],
             'auth' => [
                 'drivers' => [

@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
-use SMSkin\IdentityService\Modules\Core\Rules\PhoneRule;
+use SMSkin\LaravelSupport\BaseRequest;
+use SMSkin\LaravelSupport\Rules\PhoneRule;
 
 class CreateVerificationContextRequest extends BaseRequest
 {

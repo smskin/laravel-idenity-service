@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\User\Actions\User;
 
 use Illuminate\Database\Eloquent\Model;
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\User\Requests\User\UpdateUserRequest;
 use Illuminate\Foundation\Auth\User;
 

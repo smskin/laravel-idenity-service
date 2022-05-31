@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\User\Requests\User;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CreateUserRequest extends BaseRequest
 {

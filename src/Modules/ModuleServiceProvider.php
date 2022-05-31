@@ -13,9 +13,9 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(Core\ServiceProvider::class);
         $this->app->register(Jwt\ServiceProvider::class);
         $this->app->register(User\ServiceProvider::class);
         $this->app->register(Auth\ServiceProvider::class);
+        $this->app->register(Scope\ServiceProvider::class);
     }
 }

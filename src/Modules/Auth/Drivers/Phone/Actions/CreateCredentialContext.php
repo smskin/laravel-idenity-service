@@ -4,8 +4,8 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions;
 
 use SMSkin\IdentityService\Models\UserPhoneCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\CreateCredentialRequest;
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CreateCredentialContext extends BaseAction
 {

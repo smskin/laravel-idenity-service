@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\User\Controllers\User;
 
 use SMSkin\IdentityService\Models\Scope;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\User\Actions\Scope\AssignScopeToUser;
 use SMSkin\IdentityService\Modules\User\Requests\Scope\AssignScopeToUserRequest;
 use SMSkin\IdentityService\Modules\User\Requests\User\ExistUserRequest;
@@ -29,7 +29,7 @@ class ExecuteAfterNovaCreate extends BaseController
         app(AssignScopeToUser::class, [
             'request' => (new AssignScopeToUserRequest)
                 ->setUser($this->request->user)
-                ->setScope(Scope::where('slug', $this->getSystemChangeScope()->value)->firstOrFail())
+                ->setScope(Scope::where('slug', $this->getSystemChangeScope())->firstOrFail())
         ])->execute();
     }
 }

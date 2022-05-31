@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\Signature\Controllers;
 
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Signature\Requests\ValidateSignatureRequest;
 
 class CValidateSignature extends BaseController

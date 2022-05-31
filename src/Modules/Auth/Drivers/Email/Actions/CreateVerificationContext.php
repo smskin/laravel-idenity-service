@@ -4,8 +4,8 @@ namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions;
 
 use SMSkin\IdentityService\Models\UserEmailVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\CreateVerificationContextRequest;
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CreateVerificationContext extends BaseAction
 {

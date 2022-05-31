@@ -5,8 +5,8 @@ namespace SMSkin\IdentityService\Modules\Jwt\Controllers;
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidScopes;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Jwt\Models\Jwt;
 use SMSkin\IdentityService\Modules\Jwt\Models\JwtContext;
 use SMSkin\IdentityService\Modules\Jwt\Requests\DecodeTokenRequest;
@@ -139,7 +139,7 @@ class CRefreshAccessToken extends BaseController
      */
     private function getScopes(JwtContext $jwt): array
     {
-        if (!in_array($this->getSystemChangeScope()->value, $jwt->scopes) || !$this->request->scopes) {
+        if (!in_array($this->getSystemChangeScope(), $jwt->scopes) || !$this->request->scopes) {
             return $jwt->scopes;
         }
 

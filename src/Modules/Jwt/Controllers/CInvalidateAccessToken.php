@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\Jwt\Controllers;
 
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Jwt\Models\JwtContext;
 use SMSkin\IdentityService\Modules\Jwt\Requests\DecodeTokenRequest;
 use SMSkin\IdentityService\Modules\Jwt\Requests\InvalidateAccessTokenRequest;

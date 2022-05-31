@@ -8,8 +8,8 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions\CreateVerification
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\CreateVerificationContextRequest;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\SendVerifyCodeRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyInitialized;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Sms\Requests\SendMessageRequest;
 use SMSkin\IdentityService\Modules\Sms\SmsModule;
 use Illuminate\Validation\ValidationException;

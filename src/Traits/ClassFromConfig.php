@@ -2,9 +2,9 @@
 
 namespace SMSkin\IdentityService\Traits;
 
-use BackedEnum;
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
+use SMSkin\IdentityServiceClient\Enums\ScopeGroups;
 use function config;
 
 trait ClassFromConfig
@@ -22,8 +22,13 @@ trait ClassFromConfig
         return app($this->getUserModelClass());
     }
 
-    public function getSystemChangeScope(): BackedEnum
+    public function getSystemChangeScope(): string
     {
         return config('identity-service.modules.auth.scopes.system-change-scope');
+    }
+
+    public function getScopeGroupsEnum(): ScopeGroups
+    {
+        return app(config('identity-service.classes.enums.scope-groups'));
     }
 }

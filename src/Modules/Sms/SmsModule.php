@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Sms;
 
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\Sms\Controllers\CSendMessage;
 use SMSkin\IdentityService\Modules\Sms\Requests\SendMessageRequest;
 use Illuminate\Validation\ValidationException;

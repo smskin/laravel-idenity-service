@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions;
 
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistCredentialRequest;
-use SMSkin\IdentityService\Modules\Core\BaseAction;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseAction;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class DeleteCredential extends BaseAction
 {

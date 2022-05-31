@@ -4,7 +4,7 @@ namespace SMSkin\IdentityService\Modules\OAuth;
 
 use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\RegistrationDisabled;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\OAuth\Controllers\CGetRedirector;
 use SMSkin\IdentityService\Modules\OAuth\Controllers\CProcessCallback;
 use SMSkin\IdentityService\Modules\OAuth\Exceptions\DriverCredentialsNotDefined;

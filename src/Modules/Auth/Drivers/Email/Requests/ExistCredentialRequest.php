@@ -3,8 +3,8 @@
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests;
 
 use SMSkin\IdentityService\Models\UserEmailCredential;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
-use SMSkin\IdentityService\Modules\Core\Rules\ExistsEloquentModelRule;
+use SMSkin\LaravelSupport\BaseRequest;
+use SMSkin\LaravelSupport\Rules\ExistsEloquentModelRule;
 
 class ExistCredentialRequest extends BaseRequest
 {

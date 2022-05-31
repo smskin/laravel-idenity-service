@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Jwt\Requests;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class GenerateAccessTokenRequest extends BaseRequest
 {

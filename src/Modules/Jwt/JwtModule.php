@@ -3,7 +3,7 @@
 namespace SMSkin\IdentityService\Modules\Jwt;
 
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidScopes;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\Jwt\Controllers\CDecodeAccessToken;
 use SMSkin\IdentityService\Modules\Jwt\Controllers\CDecodeRefreshToken;
 use SMSkin\IdentityService\Modules\Jwt\Controllers\CGenerateAccessToken;

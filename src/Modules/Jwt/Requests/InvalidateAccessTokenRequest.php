@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\Jwt\Requests;
 
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
-use SMSkin\IdentityService\Modules\Core\Rules\InstanceOfRule;
+use SMSkin\LaravelSupport\BaseRequest;
+use SMSkin\LaravelSupport\Rules\InstanceOfRule;
 use SMSkin\IdentityService\Modules\Jwt\Models\JwtContext;
 
 class InvalidateAccessTokenRequest extends BaseRequest

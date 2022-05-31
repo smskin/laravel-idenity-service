@@ -7,8 +7,8 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\UpdateCredentialPa
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\UpdateCredentialPasswordRequest;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\UpdatePasswordRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\CredentialWithThisIdentifyNotExists;
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 
 class CUpdatePassword extends BaseController
 {

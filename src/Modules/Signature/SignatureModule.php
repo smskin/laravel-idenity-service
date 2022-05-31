@@ -2,7 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Signature;
 
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\Signature\Controllers\CGenerateSignature;
 use SMSkin\IdentityService\Modules\Signature\Controllers\CValidateSignature;
 use SMSkin\IdentityService\Modules\Signature\Requests\GenerateSignatureRequest;

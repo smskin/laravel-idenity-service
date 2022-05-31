@@ -2,8 +2,8 @@
 
 namespace SMSkin\IdentityService\Modules\OAuth\Drivers\Support\Controllers;
 
-use SMSkin\IdentityService\Modules\Core\BaseController;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseController;
+use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\OAuth\Exceptions\DriverCredentialsNotDefined;
 use SMSkin\IdentityService\Modules\OAuth\Requests\GetRedirectorRequest;
 use Illuminate\Http\RedirectResponse;

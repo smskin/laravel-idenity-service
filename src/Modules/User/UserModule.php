@@ -4,7 +4,7 @@ namespace SMSkin\IdentityService\Modules\User;
 
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Modules\Core\BaseModule;
+use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\User\Controllers\User\CCreateUser;
 use SMSkin\IdentityService\Modules\User\Controllers\User\CUpdateUser;
 use SMSkin\IdentityService\Modules\User\Controllers\User\ExecuteAfterNovaCreate;

@@ -3,9 +3,9 @@
 namespace SMSkin\IdentityService\Modules\Auth\Requests;
 
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum;
-use SMSkin\IdentityService\Modules\Core\Rules\InstanceOfRule;
+use SMSkin\LaravelSupport\Rules\InstanceOfRule;
 
-abstract class BaseRequest extends \SMSkin\IdentityService\Modules\Core\BaseRequest
+abstract class BaseRequest extends \SMSkin\LaravelSupport\BaseRequest
 {
     public DriverEnum $driver;
 

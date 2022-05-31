@@ -11,7 +11,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnot
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
 use SMSkin\IdentityService\Modules\Auth\Requests\RegisterRequest;
-use SMSkin\IdentityService\Modules\Core\BaseRequest;
+use SMSkin\LaravelSupport\BaseRequest;
 use Throwable;
 
 class CRegister extends BaseController
