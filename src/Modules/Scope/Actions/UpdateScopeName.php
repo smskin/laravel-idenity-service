@@ -12,7 +12,7 @@ class UpdateScopeName extends BaseAction
 
     protected ?string $requestClass = UpdateScopeNameRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $scope = $this->request->scope;
 

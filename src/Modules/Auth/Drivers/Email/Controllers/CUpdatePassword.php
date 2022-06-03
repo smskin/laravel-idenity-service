@@ -17,10 +17,10 @@ class CUpdatePassword extends BaseController
     protected ?string $requestClass = UpdatePasswordRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws CredentialWithThisIdentifyNotExists
      */
-    public function execute(): self
+    public function execute(): static
     {
         $credential = $this->getCredential();
         if (!$credential) {

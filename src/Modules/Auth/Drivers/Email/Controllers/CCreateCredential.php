@@ -17,11 +17,11 @@ class CCreateCredential extends BaseController
     protected ?string $requestClass = CreateCredentialRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateCredentials();
         $this->result = $this->createCredential();

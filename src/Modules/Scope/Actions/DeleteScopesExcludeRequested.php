@@ -13,7 +13,7 @@ class DeleteScopesExcludeRequested extends BaseAction
 
     protected ?string $requestClass = DeleteScopesExcludeRequestedRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         Scope::whereNotIn('id', $this->request->ids)->delete();
         return $this;

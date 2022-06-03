@@ -13,7 +13,7 @@ class CreateScopeGroup extends BaseAction
 
     protected ?string $requestClass = CreateScopeGroupRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $scope = new ScopeGroup();
         $scope->name = $this->request->name;

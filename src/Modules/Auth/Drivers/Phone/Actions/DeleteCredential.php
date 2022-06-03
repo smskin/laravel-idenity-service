@@ -12,7 +12,7 @@ class DeleteCredential extends BaseAction
 
     protected ?string $requestClass = ExistCredentialRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $credential = $this->request->credential;
         $credential->delete();

@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 
 class CRemoveInactiveVerifications extends BaseController
 {
-    public function execute(): self
+    public function execute(): static
     {
         $verifications = $this->getVerifications();
         foreach ($verifications as $verification) {

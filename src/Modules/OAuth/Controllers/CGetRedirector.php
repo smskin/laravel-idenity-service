@@ -22,13 +22,13 @@ class CGetRedirector extends BaseController
     protected ?string $requestClass = GetRedirectorRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws DisabledDriver
      * @throws InvalidSignature
      * @throws ValidationException
      * @throws DriverCredentialsNotDefined
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateSignature();
         $this->saveCallbackObject();

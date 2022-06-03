@@ -12,7 +12,7 @@ class CValidateSignature extends BaseController
 
     protected ?string $requestClass = ValidateSignatureRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $signature = $this->request->value . '|' . $this->getKey() . '|' . $this->request->salt;
         $this->result = sha1(strtolower($signature)) === strtolower($this->request->signature);

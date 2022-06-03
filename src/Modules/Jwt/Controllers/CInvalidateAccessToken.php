@@ -21,14 +21,14 @@ class CInvalidateAccessToken extends BaseController
     protected ?string $requestClass = InvalidateAccessTokenRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws InvalidSignatureException
      * @throws InvalidTokenException
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $jwt = $this->request->jwt ?? $this->decodeToken();
 

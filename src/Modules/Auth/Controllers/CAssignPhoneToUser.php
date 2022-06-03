@@ -22,14 +22,14 @@ class CAssignPhoneToUser extends BaseController
     protected ?string $requestClass = AssignPhoneToUserRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws DisabledDriver
      * @throws InvalidPassword
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateDriver();
         $this->result = app(PhoneModule::class)->assignPhoneToUserByCode(

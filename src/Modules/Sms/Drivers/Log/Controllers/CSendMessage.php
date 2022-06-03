@@ -14,7 +14,7 @@ class CSendMessage extends BaseController
 
     protected ?string $requestClass = SendMessageRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         Log::channel($this->getChannel())->debug('SMS Message. Phone: ' . $this->request->phone . ', Message: ' . $this->request->message);
         return $this;

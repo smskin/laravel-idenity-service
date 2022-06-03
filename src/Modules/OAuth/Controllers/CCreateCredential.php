@@ -16,10 +16,10 @@ class CCreateCredential extends BaseController
     protected ?string $requestClass = CreateCredentialRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws CredentialWithThisRemoteIdAlreadyExists
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateState();
         $this->result = $this->createContext();

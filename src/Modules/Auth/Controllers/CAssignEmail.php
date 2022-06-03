@@ -21,13 +21,13 @@ class CAssignEmail extends BaseController
     protected ?string $requestClass = AssignEmailToUserRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws DisabledDriver
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateDriver();
         $this->result = app(EmailModule::class)->createCredential(

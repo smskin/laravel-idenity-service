@@ -11,9 +11,9 @@ abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
     protected string $method;
 
     /**
-     * @return $this
+     * @return static
      */
-    public function execute(): self
+    public function execute(): static
     {
         $driver = $this->getDriver();
         $method = $this->method;

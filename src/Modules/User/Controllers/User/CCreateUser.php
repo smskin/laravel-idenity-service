@@ -21,7 +21,7 @@ class CCreateUser extends BaseController
 
     protected ?string $requestClass = CreateUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $user = $this->createUser();
         $this->appendDefaultScope($user);

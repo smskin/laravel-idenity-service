@@ -17,7 +17,7 @@ class Callback implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->url = $data['url'];
         $this->key = $data['key'];

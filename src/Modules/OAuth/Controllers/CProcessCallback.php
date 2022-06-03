@@ -30,7 +30,7 @@ class CProcessCallback extends BaseController
     protected ?string $requestClass = ProcessCallbackRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws DisabledDriver
      * @throws JsonEncodingException
      * @throws RegistrationDisabled
@@ -38,7 +38,7 @@ class CProcessCallback extends BaseController
      * @throws SigningException
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $user = $this->getDriver()->processCallback($this->request);
         $callback = $this->getCallbackObject();

@@ -17,11 +17,11 @@ class CGenerateAccessTokenByUser extends BaseController
     protected ?string $requestClass = GenerateAccessTokenByUserRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws JsonEncodingException
      * @throws SigningException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->result = app(CGenerateAccessToken::class, [
             'request' => (new GenerateAccessTokenRequest)

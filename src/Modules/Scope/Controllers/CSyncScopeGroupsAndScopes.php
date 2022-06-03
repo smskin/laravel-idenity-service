@@ -25,7 +25,7 @@ class CSyncScopeGroupsAndScopes extends BaseController
 {
     use ClassFromConfig;
 
-    public function execute(): self
+    public function execute(): static
     {
         $groupIds = [];
         $scopeIds = [];

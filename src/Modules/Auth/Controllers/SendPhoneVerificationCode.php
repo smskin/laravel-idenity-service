@@ -19,12 +19,12 @@ class SendPhoneVerificationCode extends BaseController
     protected ?string $requestClass = SendPhoneVerificationCodeRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws DisabledDriver
      * @throws VerificationAlreadyInitialized
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateDriver();
         app(PhoneModule::class)->sendVerifyCode(

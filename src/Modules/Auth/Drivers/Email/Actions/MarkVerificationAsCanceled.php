@@ -12,7 +12,7 @@ class MarkVerificationAsCanceled extends BaseAction
 
     protected ?string $requestClass = ExistVerificationRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $verification = $this->request->verification;
         $verification->is_canceled = true;

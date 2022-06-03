@@ -32,7 +32,7 @@ class CValidateAccessToken extends BaseController
      * @throws SigningException
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $parser = new Parser($this->getSigner(), $this->getValidator());
         $parser->validate($this->request->token);

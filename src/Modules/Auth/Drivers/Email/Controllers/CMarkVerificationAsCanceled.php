@@ -15,10 +15,10 @@ class CMarkVerificationAsCanceled extends BaseController
     protected ?string $requestClass = ExistVerificationRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws VerificationAlreadyCanceled
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateState();
         $this->updateContext();

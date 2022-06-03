@@ -12,7 +12,7 @@ class UpdateScopeGroupName extends BaseAction
 
     protected ?string $requestClass = UpdateScopeGroupNameRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $group = $this->request->group;
 

@@ -16,7 +16,7 @@ class CValidateVerifyCode extends BaseController
 
     protected ?string $requestClass = ValidateCredentialsRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $verification = $this->getVerification();
         if (!$verification)

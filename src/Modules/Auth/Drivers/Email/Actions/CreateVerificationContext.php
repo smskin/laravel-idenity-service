@@ -13,7 +13,7 @@ class CreateVerificationContext extends BaseAction
 
     protected ?string $requestClass = CreateVerificationContextRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $context = new UserEmailVerification();
         $context->user_id = $this->request->credential->user_id;
@@ -27,9 +27,9 @@ class CreateVerificationContext extends BaseAction
     }
 
     /**
-     * @return $this
+     * @return static
      */
-    public function getResult(): self
+    public function getResult(): static
     {
         return parent::getResult();
     }

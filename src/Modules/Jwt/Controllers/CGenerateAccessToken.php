@@ -26,7 +26,7 @@ class CGenerateAccessToken extends BaseController
      * @throws JsonEncodingException
      * @throws SigningException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $jti = Str::uuid()->toString();
         $generator = new Generator($this->getSigner());

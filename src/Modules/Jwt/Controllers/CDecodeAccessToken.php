@@ -38,7 +38,7 @@ class CDecodeAccessToken extends BaseController
      * @throws SigningException
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $key = md5($this->request->token);
         if (in_array($key, self::$decodedTokens)) {

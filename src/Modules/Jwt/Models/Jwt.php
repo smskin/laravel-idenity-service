@@ -37,7 +37,7 @@ class Jwt implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->accessToken = (new Token())->fromArray($data['accessToken']);
         $this->refreshToken = (new Token())->fromArray($data['refreshToken']);

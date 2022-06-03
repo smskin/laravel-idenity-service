@@ -16,13 +16,13 @@ class CDeleteCredential extends BaseController
     protected ?string $requestClass = DeleteCredentialRequest::class;
 
     /**
-     * @return BaseController
+     * @return static
      * @throws CredentialWithThisIdentifyNotExists
      * @throws DisabledDriver
      * @throws UnsupportedDriver
      * @throws ValidationException
      */
-    public function execute(): BaseController
+    public function execute(): static
     {
         $this->getDriver()->deleteCredential($this->request);
 

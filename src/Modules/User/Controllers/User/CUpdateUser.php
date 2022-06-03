@@ -15,7 +15,7 @@ class CUpdateUser extends BaseController
 
     protected ?string $requestClass = UpdateUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $this->result = app(UpdateUserContext::class, [
             'request'=>$this->request

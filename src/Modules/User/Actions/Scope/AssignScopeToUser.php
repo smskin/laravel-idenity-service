@@ -12,7 +12,7 @@ class AssignScopeToUser extends BaseAction
 
     protected ?string $requestClass = AssignScopeToUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $this->request->user->scopes()->attach($this->request->scope);
         return $this;

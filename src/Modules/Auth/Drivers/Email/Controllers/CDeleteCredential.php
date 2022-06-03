@@ -13,7 +13,7 @@ class CDeleteCredential extends BaseController
 
     protected ?string $requestClass = ExistCredentialRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         app(DeleteCredential::class, [
             'request' => $this->request

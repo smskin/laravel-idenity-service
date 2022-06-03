@@ -21,7 +21,7 @@ class CRegister extends BaseController
     protected ?string $requestClass = RegisterRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws UnsupportedDriver
      * @throws InvalidPassword
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
@@ -30,7 +30,7 @@ class CRegister extends BaseController
      * @throws DisabledDriver
      * @throws Throwable
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateConfig();
         $this->result = $this->getDriver()->register($this->request);

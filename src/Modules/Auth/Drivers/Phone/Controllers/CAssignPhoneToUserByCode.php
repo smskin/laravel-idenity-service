@@ -21,13 +21,13 @@ class CAssignPhoneToUserByCode extends BaseController
     protected ?string $requestClass = AssignPhoneToUserByCodeRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws InvalidPassword
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $result = app(PhoneModule::class)->validateCredential(
             (new ValidateCredentialsRequest)

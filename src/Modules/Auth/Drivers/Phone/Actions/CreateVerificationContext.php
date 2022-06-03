@@ -13,7 +13,7 @@ class CreateVerificationContext extends BaseAction
 
     protected ?string $requestClass = CreateVerificationContextRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $context = new UserPhoneVerification();
         $context->phone = $this->request->phone;

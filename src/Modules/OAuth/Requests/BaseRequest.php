@@ -23,7 +23,7 @@ class BaseRequest extends \SMSkin\LaravelSupport\BaseRequest
      * @param DriverEnum $driver
      * @return self
      */
-    public function setDriver(DriverEnum $driver): self
+    public function setDriver(DriverEnum $driver): static
     {
         $this->driver = $driver;
         return $this;

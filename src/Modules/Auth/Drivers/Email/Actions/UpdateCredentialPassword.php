@@ -12,7 +12,7 @@ class UpdateCredentialPassword extends BaseAction
 
     protected ?string $requestClass = UpdateCredentialPasswordRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $credential = $this->request->credential;
         $credential->password = $this->request->password;

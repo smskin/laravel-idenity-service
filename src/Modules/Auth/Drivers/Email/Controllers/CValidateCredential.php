@@ -15,9 +15,9 @@ class CValidateCredential extends BaseController
     protected ?string $requestClass = ValidateCredentialRequest::class;
 
     /**
-     * @return $this
+     * @return static
      */
-    public function execute(): self
+    public function execute(): static
     {
         $credential = $this->getCredential();
         if (!$credential) {

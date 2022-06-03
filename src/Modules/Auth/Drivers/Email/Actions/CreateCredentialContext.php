@@ -13,7 +13,7 @@ class CreateCredentialContext extends BaseAction
 
     protected ?string $requestClass = CreateCredentialRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $credential = new UserEmailCredential();
         $credential->user_id = $this->request->user->id;

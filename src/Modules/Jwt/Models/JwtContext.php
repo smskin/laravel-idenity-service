@@ -21,7 +21,7 @@ class JwtContext implements Arrayable
         $this->iss = config('identity-service.name', 'Identity service');
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->iss = $data['iss'];
         $this->type = TokenType::from($data['type']);

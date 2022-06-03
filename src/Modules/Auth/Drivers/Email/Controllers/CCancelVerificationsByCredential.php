@@ -17,7 +17,7 @@ class CCancelVerificationsByCredential extends BaseController
 
     protected ?string $requestClass = ExistCredentialRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $verifications = $this->getVerifications();
         foreach ($verifications as $verification) {

@@ -21,11 +21,11 @@ class CSubmitVerifyCode extends BaseController
     protected ?string $requestClass = SendVerifyCodeRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws ValidationException
      * @throws VerificationAlreadyInitialized
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->validateState();
         $code = $this->generateVerifyCode();

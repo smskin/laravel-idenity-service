@@ -40,7 +40,7 @@ class CRefreshAccessToken extends BaseController
      * @throws SigningException
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $jwt = $this->getTokenFromMultiThreadCache();
         if ($jwt) {

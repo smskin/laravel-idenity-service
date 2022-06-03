@@ -17,7 +17,7 @@ class CreateUserContext extends BaseAction
 
     protected ?string $requestClass = CreateUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $user = $this->getUserModel();
         $user->name = $this->request->name;

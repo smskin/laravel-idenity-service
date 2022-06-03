@@ -35,7 +35,7 @@ class AssignScopeToUserRequest extends BaseRequest
 
     /**
      * @param User $user
-     * @return $this
+     * @return static
      */
     public function setUser(Model $user): AssignScopeToUserRequest
     {

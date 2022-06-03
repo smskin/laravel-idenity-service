@@ -13,7 +13,7 @@ class CreateCredentialContext extends BaseAction
 
     protected ?string $requestClass = CreateCredentialRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $context = new UserOAuthCredential();
         $context->driver = $this->request->driver;

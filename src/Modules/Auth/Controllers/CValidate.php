@@ -20,7 +20,7 @@ class CValidate extends BaseController
      * @throws UnsupportedDriver
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->result = $this->getDriver()->validate($this->request);
 

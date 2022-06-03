@@ -18,7 +18,7 @@ class ExecuteAfterNovaCreate extends BaseController
 
     protected ?string $requestClass = ExistUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $this->appendDefaultScope();
         return $this;

@@ -15,12 +15,12 @@ use Laravel\Socialite\Two\User as OauthUser;
 class CProcessCallback extends BaseController
 {
     /**
-     * @return $this
+     * @return static
      * @throws RegistrationDisabled
      * @throws RemoteIdAlreadyAssignedToAnotherUser
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $oauthUser = $this->getOauthUser();
         $credential = $this->getCredential($oauthUser);

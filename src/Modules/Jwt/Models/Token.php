@@ -50,7 +50,7 @@ class Token implements Arrayable
         ];
     }
 
-    public function fromArray(array $data): self
+    public function fromArray(array $data): static
     {
         $this->expiresIn = $data['expiresIn'];
         $this->expireAt = Carbon::make($data['expireAt']);

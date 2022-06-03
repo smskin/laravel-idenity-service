@@ -26,7 +26,7 @@ class CLogin extends BaseController
      * @throws UnsupportedDriver
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $user = $this->getDriver()->login($this->request);
         if ($user) {

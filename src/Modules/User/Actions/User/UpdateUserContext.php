@@ -14,7 +14,7 @@ class UpdateUserContext extends BaseAction
 
     protected ?string $requestClass = UpdateUserRequest::class;
 
-    public function execute(): self
+    public function execute(): static
     {
         $request = $this->request;
         $user = $request->user;

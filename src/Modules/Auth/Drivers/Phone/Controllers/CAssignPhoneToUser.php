@@ -19,12 +19,12 @@ class CAssignPhoneToUser extends BaseController
     protected ?string $requestClass = AssignPhoneToUserRequest::class;
 
     /**
-     * @return $this
+     * @return static
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
      */
-    public function execute(): self
+    public function execute(): static
     {
         $this->result = app(PhoneModule::class)->createCredential(
             (new CreateCredentialRequest)
