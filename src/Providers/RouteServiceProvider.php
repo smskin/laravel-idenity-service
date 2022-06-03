@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
         ])
             ->name('identity-service.')
             ->namespace('SMSkin\IdentityService\Http\Api\Controllers')
-            ->prefix('identity-service/api')
+            ->prefix(config('identity-service.host.prefix') . '/api')
             ->group(__DIR__ . '/../../routes/api.php');
     }
 
@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->name('identity-service.')
             ->namespace('SMSkin\IdentityService\Http\Web\Controllers')
-            ->prefix('identity-service')
+            ->prefix(config('identity-service.host.prefix'))
             ->group(__DIR__ . '/../../routes/web.php');
     }
 }

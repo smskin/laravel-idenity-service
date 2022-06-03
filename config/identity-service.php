@@ -18,8 +18,9 @@ return [
             'scope-groups' => ScopeGroups::class
         ]
     ],
-    'security' => [
-        'api-token' => env('IDENTITY_SERVICE_SECURITY_API_TOKEN')
+    'host' => [
+        'api_token' => env('IDENTITY_SERVICE_HOST_API_TOKEN'),
+        'prefix' => 'identity-service'
     ],
     'modules' => [
         'auth' => [
@@ -27,7 +28,7 @@ return [
                 'active' => env('IDENTITY_SERVICE_MODULE_AUTH_REGISTRATION_ACTIVE', false)
             ],
             'scopes' => [
-                'system-change-scope' => Scopes::SYSTEM_CHANGE_SCOPES
+                'system_change_scope' => Scopes::SYSTEM_CHANGE_SCOPES
             ],
             'auth' => [
                 'drivers' => [

@@ -24,7 +24,7 @@ trait ClassFromConfig
 
     public function getSystemChangeScope(): string
     {
-        return config('identity-service.modules.auth.scopes.system-change-scope');
+        return config('identity-service.modules.auth.scopes.system_change_scope');
     }
 
     public function getScopeGroupsEnum(): ScopeGroups

@@ -18,7 +18,7 @@ class ApiToken
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $token = config('identity-service.security.api-token');
+        $token = config('identity-service.host.api_token');
         if (!$token) {
             throw new Exception('IDENTITY_SERVICE_SECURITY_API_TOKEN not defined');
         }
