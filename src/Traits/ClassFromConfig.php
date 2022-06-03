@@ -29,6 +29,6 @@ trait ClassFromConfig
 
     public function getScopeGroupsEnum(): ScopeGroups
     {
-        return app(config('identity-service.classes.enums.scope-groups'));
+        return app(config('identity-service.classes.enums.scope_groups'));
     }
 }

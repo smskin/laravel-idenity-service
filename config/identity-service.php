@@ -15,7 +15,7 @@ return [
             'user' => User::class,
         ],
         'enums' => [
-            'scope-groups' => ScopeGroups::class
+            'scope_groups' => ScopeGroups::class
         ]
     ],
     'host' => [
