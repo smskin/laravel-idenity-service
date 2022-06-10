@@ -3,14 +3,12 @@
 use SMSkin\IdentityService\Http\Api\Controllers\Auth\AuthController;
 use SMSkin\IdentityService\Http\Api\Controllers\Auth\EmailController as AuthEmailController;
 use SMSkin\IdentityService\Http\Api\Controllers\Auth\PhoneController as AuthPhoneController;
-use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityController;
 use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityEmailController;
 use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityPhoneController;
 use SMSkin\IdentityService\Http\Api\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
 use SMSkin\IdentityService\Http\Api\Controllers\ScopeController;
 use SMSkin\IdentityService\Http\Api\Controllers\ScopeGroupController;
-use SMSkin\IdentityService\Http\Api\Controllers\UserController;
 use SMSkin\IdentityService\Http\Api\Middleware\ApiToken;
 
 /*
@@ -53,13 +51,14 @@ Route::prefix('oauth')->group(function () {
 });
 
 Route::prefix('identity')->group(function () {
-    Route::get('/', [IdentityController::class, 'show'])
+    $identityController = config('identity-service.classes.controllers.identity');
+    Route::get('/', [$identityController, 'show'])
         ->withoutMiddleware(['throttle:api'])
         ->middleware(['throttle:unlimited']);
-    Route::get('scopes', [IdentityController::class, 'getScopes']);
-    Route::put('/', [IdentityController::class, 'update']);
-    Route::post('impersonate', [IdentityController::class, 'impersonate']);
-    Route::get('logout', [IdentityController::class, 'logout']);
+    Route::get('scopes', [$identityController, 'getScopes']);
+    Route::put('/', [$identityController, 'update']);
+    Route::post('impersonate', [$identityController, 'impersonate']);
+    Route::get('logout', [$identityController, 'logout']);
 
     Route::prefix('email')->group(function () {
         Route::post('/', [IdentityEmailController::class, 'assign']);
@@ -85,14 +84,15 @@ Route::prefix('scopes')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'getList']);
-    Route::post('/', [UserController::class, 'create']);
-    Route::prefix('{userId}')->group(function () {
-        Route::get('/', [UserController::class, 'show']);
-        Route::put('/', [UserController::class, 'update']);
-        Route::get('scope-groups', [UserController::class, 'getScopeGroups']);
-        Route::post('scope-groups', [UserController::class, 'assignScopeGroup']);
-        Route::get('scopes', [UserController::class, 'getScopes']);
-        Route::post('scopes', [UserController::class, 'assignScope']);
+    $userController = config('identity-service.classes.controllers.user');
+    Route::get('/', [$userController, 'getList']);
+    Route::post('/', [$userController, 'create']);
+    Route::prefix('{userId}')->group(function () use ($userController) {
+        Route::get('/', [$userController, 'show']);
+        Route::put('/', [$userController, 'update']);
+        Route::get('scope-groups', [$userController, 'getScopeGroups']);
+        Route::post('scope-groups', [$userController, 'assignScopeGroup']);
+        Route::get('scopes', [$userController, 'getScopes']);
+        Route::post('scopes', [$userController, 'assignScope']);
     });
 });

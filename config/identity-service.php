@@ -1,5 +1,7 @@
 <?php
 
+use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityController;
+use SMSkin\IdentityService\Http\Api\Controllers\UserController;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum as AuthDriverEnum;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum as OAuthDriverEnum;
@@ -24,6 +26,10 @@ return [
             'scope' => ScopePolicy::class,
             'scope_group' => ScopeGroupPolicy::class,
             'user' => UserPolicy::class
+        ],
+        'controllers' => [
+            'identity' => IdentityController::class,
+            'user' => UserController::class
         ]
     ],
     'host' => [
