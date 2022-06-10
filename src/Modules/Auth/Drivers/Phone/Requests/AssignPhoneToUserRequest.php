@@ -24,7 +24,7 @@ class AssignPhoneToUserRequest extends BaseRequest
         return [
             'user' => [
                 'required',
-                new ExistsEloquentModelRule($this->getUserModelClass())
+                new ExistsEloquentModelRule(self::getUserModelClass())
             ],
             'phone' => [
                 'required',

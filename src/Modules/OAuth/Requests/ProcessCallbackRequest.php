@@ -23,7 +23,7 @@ class ProcessCallbackRequest extends BaseRequest
             [
                 'user' => [
                     'nullable',
-                    new ExistsEloquentModelRule($this->getUserModelClass())
+                    new ExistsEloquentModelRule(self::getUserModelClass())
                 ]
             ]
         );

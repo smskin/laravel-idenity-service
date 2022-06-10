@@ -33,7 +33,7 @@ class CreateCredentialRequest extends \SMSkin\LaravelSupport\BaseRequest
             ],
             'user' => [
                 'required',
-                new ExistsEloquentModelRule($this->getUserModelClass())
+                new ExistsEloquentModelRule(self::getUserModelClass())
             ]
         ];
     }

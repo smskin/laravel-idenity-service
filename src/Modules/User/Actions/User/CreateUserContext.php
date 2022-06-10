@@ -19,7 +19,7 @@ class CreateUserContext extends BaseAction
 
     public function execute(): static
     {
-        $user = $this->getUserModel();
+        $user = self::getUserModel();
         $user->name = $this->request->name;
         $user->save();
 

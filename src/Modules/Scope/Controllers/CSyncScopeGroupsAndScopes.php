@@ -30,7 +30,7 @@ class CSyncScopeGroupsAndScopes extends BaseController
         $groupIds = [];
         $scopeIds = [];
 
-        $groups = $this->getScopeGroupsEnum();
+        $groups = self::getScopeGroupsEnum();
         foreach ($groups::items() as $groupEnum) {
             $group = $this->getGroup($groupEnum);
             foreach ($groupEnum->scopes as $scopeEnum) {

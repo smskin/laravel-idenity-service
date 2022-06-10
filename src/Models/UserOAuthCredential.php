@@ -19,6 +19,6 @@ class UserOAuthCredential extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo($this->getUserModelClass(), 'user_id', 'id');
+        return $this->belongsTo(self::getUserModelClass(), 'user_id', 'id');
     }
 }

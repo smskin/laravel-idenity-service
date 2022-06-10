@@ -128,7 +128,7 @@ class PhoneController extends Controller
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
-                    $this->getSystemChangeScope()
+                    self::getSystemChangeScope()
                 ])
         );
 

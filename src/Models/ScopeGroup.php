@@ -22,7 +22,7 @@ class ScopeGroup extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany($this->getUserModelClass(), 'pivot_scope_group_user', 'group_id', 'user_id');
+        return $this->belongsToMany(self::getUserModelClass(), 'pivot_scope_group_user', 'group_id', 'user_id');
     }
 
     public function scopes(): HasMany

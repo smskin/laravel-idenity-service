@@ -1,10 +1,20 @@
 <?php
 
+use SMSkin\IdentityService\Models\Scope;
+use SMSkin\IdentityService\Models\ScopeGroup;
 use SMSkin\IdentityService\Models\User;
+use SMSkin\IdentityService\Models\UserEmailCredential;
+use SMSkin\IdentityService\Models\UserEmailVerification;
+use SMSkin\IdentityService\Models\UserOAuthCredential;
+use SMSkin\IdentityService\Models\UserPhoneCredential;
+use SMSkin\IdentityService\Models\UserPhoneVerification;
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum as AuthDriverEnum;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum as OAuthDriverEnum;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\LogDriver;
 use SMSkin\IdentityService\Modules\Sms\Enums\DriverEnum as SmsDriverEnum;
+use SMSkin\IdentityService\Policies\ScopeGroupPolicy;
+use SMSkin\IdentityService\Policies\ScopePolicy;
+use SMSkin\IdentityService\Policies\UserPolicy;
 use SMSkin\IdentityServiceClient\Enums\ScopeGroups;
 use SMSkin\IdentityServiceClient\Enums\Scopes;
 
@@ -13,13 +23,19 @@ return [
     'classes' => [
         'models' => [
             'user' => User::class,
+            'scope' => Scope::class,
+            'scope_group' => ScopeGroup::class
         ],
         'enums' => [
             'scope_groups' => ScopeGroups::class
+        ],
+        'policies' => [
+            'scope' => ScopePolicy::class,
+            'scope_group' => ScopeGroupPolicy::class,
+            'user' => UserPolicy::class
         ]
     ],
     'host' => [
-        'api_token' => env('IDENTITY_SERVICE_HOST_API_TOKEN'),
         'prefix' => 'identity-service'
     ],
     'modules' => [

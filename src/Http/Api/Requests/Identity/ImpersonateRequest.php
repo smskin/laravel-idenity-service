@@ -1,6 +1,6 @@
 <?php
 
-namespace SMSkin\IdentityService\Http\Api\Requests\Auth;
+namespace SMSkin\IdentityService\Http\Api\Requests\Identity;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

@@ -30,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->getUserModel()::observe(UserObserver::class);
+        self::getUserModel()::observe(UserObserver::class);
         UserPhoneVerification::observe(PhoneVerificationObserver::class);
         UserEmailCredential::observe(UserEmailCredentialObserver::class);
         UserEmailVerification::observe(UserEmailVerificationObserver::class);

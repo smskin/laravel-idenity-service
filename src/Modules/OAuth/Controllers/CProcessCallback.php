@@ -49,7 +49,7 @@ class CProcessCallback extends BaseController
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
-                    $this->getSystemChangeScope()
+                    self::getSystemChangeScope()
                 ])
         );
         $this->result = redirect()->to($this->prepareCallbackUrl($callback, $jwt));

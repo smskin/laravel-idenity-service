@@ -35,7 +35,7 @@ class CCreateUser extends BaseController
         app(AssignScopeToUser::class, [
             'request' => (new AssignScopeToUserRequest)
                 ->setUser($user)
-                ->setScope(Scope::where('slug', $this->getSystemChangeScope())->firstOrFail())
+                ->setScope(Scope::where('slug', self::getSystemChangeScope())->firstOrFail())
         ])->execute();
     }
 

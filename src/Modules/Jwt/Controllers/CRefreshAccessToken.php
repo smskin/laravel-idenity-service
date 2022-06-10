@@ -139,7 +139,7 @@ class CRefreshAccessToken extends BaseController
      */
     private function getScopes(JwtContext $jwt): array
     {
-        if (!in_array($this->getSystemChangeScope(), $jwt->scopes) || !$this->request->scopes) {
+        if (!in_array(self::getSystemChangeScope(), $jwt->scopes) || !$this->request->scopes) {
             return $jwt->scopes;
         }
 
@@ -163,6 +163,6 @@ class CRefreshAccessToken extends BaseController
      */
     private function getUserByJwt(JwtContext $jwt): Model
     {
-        return $this->getUserModel()::where('identity_uuid', $jwt->sub)->firstOrFail();
+        return self::getUserModel()::where('identity_uuid', $jwt->sub)->firstOrFail();
     }
 }

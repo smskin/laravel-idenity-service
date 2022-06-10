@@ -9,7 +9,7 @@ use function config;
 
 trait ClassFromConfig
 {
-    public function getUserModelClass(): string
+    public static function getUserModelClass(): string
     {
         return config('identity-service.classes.models.user');
     }
@@ -17,18 +17,33 @@ trait ClassFromConfig
     /**
      * @return User
      */
-    public function getUserModel(): Model
+    public static function getUserModel(): Model
     {
-        return app($this->getUserModelClass());
+        return app(self::getUserModelClass());
     }
 
-    public function getSystemChangeScope(): string
+    public static function getSystemChangeScope(): string
     {
         return config('identity-service.modules.auth.scopes.system_change_scope');
     }
 
-    public function getScopeGroupsEnum(): ScopeGroups
+    public static function getScopeGroupsEnum(): ScopeGroups
     {
         return app(config('identity-service.classes.enums.scope_groups'));
+    }
+
+    public static function getUserPolicyClass(): string
+    {
+        return config('identity-service.classes.policies.user');
+    }
+
+    public static function getScopePolicyClass(): string
+    {
+        return config('identity-service.classes.policies.scope');
+    }
+
+    public static function getScopeGroupPolicyClass(): string
+    {
+        return config('identity-service.classes.policies.scope_group');
     }
 }

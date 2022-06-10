@@ -25,7 +25,7 @@ class DeleteCredentialRequest extends BaseRequest
             [
                 'user' => [
                     'required',
-                    new ExistsEloquentModelRule($this->getUserModelClass())
+                    new ExistsEloquentModelRule(self::getUserModelClass())
                 ],
                 'identify' => [
                     'required'

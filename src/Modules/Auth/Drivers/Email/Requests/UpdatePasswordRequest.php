@@ -24,7 +24,7 @@ class UpdatePasswordRequest extends BaseRequest
         return [
             'user' => [
                 'required',
-                new ExistsEloquentModelRule($this->getUserModelClass())
+                new ExistsEloquentModelRule(self::getUserModelClass())
             ],
             'email' => [
                 'required',

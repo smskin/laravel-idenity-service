@@ -88,7 +88,7 @@ class JwtGuard implements IJwtGuard
             return null;
         }
 
-        return $this->user = $this->getUserModel()::where('identity_uuid', $this->jwt->sub)->first();
+        return $this->user = self::getUserModel()::where('identity_uuid', $this->jwt->sub)->first();
     }
 
     /**
