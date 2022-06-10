@@ -20,9 +20,7 @@ class SignatureModule extends BaseModule
     {
         $request->validate();
 
-        return app(CGenerateSignature::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CGenerateSignature($request))->execute()->getResult();
     }
 
     /**
@@ -34,8 +32,6 @@ class SignatureModule extends BaseModule
     {
         $request->validate();
 
-        return app(CValidateSignature::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CValidateSignature($request))->execute()->getResult();
     }
 }

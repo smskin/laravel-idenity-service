@@ -22,7 +22,7 @@ abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
     protected function getDriver(): Driver
     {
         $driver = match ($this->request->driver) {
-            DriverEnum::GITHUB => app(GithubDriver::class)
+            DriverEnum::GITHUB => new GithubDriver
         };
 
         if (!in_array($this->request->driver, config('identity-service.modules.auth.oauth.drivers', []))) {

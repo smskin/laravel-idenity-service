@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\MarkVerificationAsCanceled;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistVerificationRequest;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
@@ -16,6 +17,7 @@ class CMarkVerificationAsCanceled extends BaseController
 
     /**
      * @return static
+     * @throws ValidationException
      * @throws VerificationAlreadyCanceled
      */
     public function execute(): static
@@ -36,10 +38,12 @@ class CMarkVerificationAsCanceled extends BaseController
         }
     }
 
+    /**
+     * @return void
+     * @throws ValidationException
+     */
     private function updateContext()
     {
-        app(MarkVerificationAsCanceled::class, [
-            'request' => $this->request
-        ])->execute();
+        (new MarkVerificationAsCanceled($this->request))->execute();
     }
 }

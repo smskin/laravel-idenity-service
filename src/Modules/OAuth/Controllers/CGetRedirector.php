@@ -56,7 +56,7 @@ class CGetRedirector extends BaseController
      */
     private function validateSignature()
     {
-        $result = app(SignatureModule::class)->validate(
+        $result = (new SignatureModule)->validate(
             (new ValidateSignatureRequest)
                 ->setValue(sha1($this->request->callback->url))
                 ->setSalt($this->request->callback->key)

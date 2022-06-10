@@ -10,7 +10,7 @@ class NotBlockedTokenByJti implements Rule
 {
     public function validate(string $name, $value)
     {
-        $isBlocked = app(InvalidatedTokenStorage::class)->hasByJti($value);
+        $isBlocked = (new InvalidatedTokenStorage)->hasByJti($value);
 
         if ($isBlocked) {
             throw new ValidationException("The token is invalidated.");

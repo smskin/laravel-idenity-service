@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\OAuth\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserOAuthCredential;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
@@ -18,6 +19,7 @@ class CCreateCredential extends BaseController
     /**
      * @return static
      * @throws CredentialWithThisRemoteIdAlreadyExists
+     * @throws ValidationException
      */
     public function execute(): static
     {
@@ -46,10 +48,12 @@ class CCreateCredential extends BaseController
         }
     }
 
+    /**
+     * @return UserOAuthCredential
+     * @throws ValidationException
+     */
     private function createContext(): UserOAuthCredential
     {
-        return app(CreateCredentialContext::class, [
-            'request' => $this->request
-        ])->execute()->getResult();
+        return (new CreateCredentialContext($this->request))->execute()->getResult();
     }
 }

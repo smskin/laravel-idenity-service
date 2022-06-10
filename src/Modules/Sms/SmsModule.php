@@ -18,8 +18,6 @@ class SmsModule extends BaseModule
     {
         $request->validate();
 
-        app(CSendMessage::class, [
-            'request' => $request
-        ])->execute();
+        (new CSendMessage($request))->execute();
     }
 }

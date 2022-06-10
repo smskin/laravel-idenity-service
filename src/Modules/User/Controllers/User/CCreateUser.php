@@ -3,6 +3,7 @@
 namespace SMSkin\IdentityService\Modules\User\Controllers\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\Scope;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\LaravelSupport\BaseController;
@@ -21,6 +22,10 @@ class CCreateUser extends BaseController
 
     protected ?string $requestClass = CreateUserRequest::class;
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function execute(): static
     {
         $user = $this->createUser();
@@ -30,13 +35,18 @@ class CCreateUser extends BaseController
         return $this;
     }
 
+    /**
+     * @param Model $user
+     * @return void
+     * @throws ValidationException
+     */
     private function appendDefaultScope(Model $user)
     {
-        app(AssignScopeToUser::class, [
-            'request' => (new AssignScopeToUserRequest)
+        (new AssignScopeToUser(
+            (new AssignScopeToUserRequest)
                 ->setUser($user)
                 ->setScope(Scope::where('slug', self::getSystemChangeScope())->firstOrFail())
-        ])->execute();
+        ))->execute();
     }
 
     /**
@@ -49,11 +59,10 @@ class CCreateUser extends BaseController
 
     /**
      * @return User
+     * @throws ValidationException
      */
     private function createUser(): Model
     {
-        return app(CreateUserContext::class, [
-            'request' => $this->request
-        ])->execute()->getResult();
+        return (new CreateUserContext($this->request))->execute()->getResult();
     }
 }

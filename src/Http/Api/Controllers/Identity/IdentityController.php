@@ -6,6 +6,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use MiladRahimi\Jwt\Exceptions\JsonEncodingException;
+use MiladRahimi\Jwt\Exceptions\SigningException;
 use OpenApi\Annotations\Get;
 use OpenApi\Annotations\Items;
 use OpenApi\Annotations\JsonContent;
@@ -101,7 +103,7 @@ class IdentityController extends Controller
             $r->setName($request->input('name'));
         }
 
-        app(UserModule::class)->update($r);
+        (new UserModule)->update($r);
         return response()->json(new RIdentity($user));
     }
 
@@ -143,6 +145,9 @@ class IdentityController extends Controller
      * @param ImpersonateRequest $request
      * @return JsonResponse
      * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws JsonEncodingException
+     * @throws SigningException
      */
     public function impersonate(ImpersonateRequest $request): JsonResponse
     {
@@ -150,7 +155,7 @@ class IdentityController extends Controller
         $user = self::getUserModel()::where('identity_uuid', $uuid)->firstOrFail();
         $this->authorize('impersonate', $user);
 
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes($user->getScopes()->pluck('slug')->toArray())

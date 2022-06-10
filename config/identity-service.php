@@ -27,7 +27,8 @@ return [
         ]
     ],
     'host' => [
-        'prefix' => 'identity-service'
+        'prefix' => 'identity-service',
+        'api_token' => env('IDENTITY_SERVICE_HOST_API_TOKEN'),
     ],
     'modules' => [
         'auth' => [

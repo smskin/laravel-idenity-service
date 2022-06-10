@@ -27,7 +27,7 @@ class SendPhoneVerificationCode extends BaseController
     public function execute(): static
     {
         $this->validateDriver();
-        app(PhoneModule::class)->sendVerifyCode(
+        (new PhoneModule)->sendVerifyCode(
             (new SendVerifyCodeRequest)
                 ->setPhone($this->request->phone)
         );
@@ -41,8 +41,7 @@ class SendPhoneVerificationCode extends BaseController
      */
     private function validateDriver()
     {
-        if (!in_array(DriverEnum::PHONE, config('identity-service.modules.auth.auth.drivers', [])))
-        {
+        if (!in_array(DriverEnum::PHONE, config('identity-service.modules.auth.auth.drivers', []))) {
             throw new DisabledDriver();
         }
     }

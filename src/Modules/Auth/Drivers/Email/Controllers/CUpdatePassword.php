@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserEmailCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\UpdateCredentialPassword;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\UpdateCredentialPasswordRequest;
@@ -19,6 +20,7 @@ class CUpdatePassword extends BaseController
     /**
      * @return static
      * @throws CredentialWithThisIdentifyNotExists
+     * @throws ValidationException
      */
     public function execute(): static
     {
@@ -37,12 +39,17 @@ class CUpdatePassword extends BaseController
             ->whereEmail($this->request->email)->first();
     }
 
+    /**
+     * @param UserEmailCredential $credential
+     * @return void
+     * @throws ValidationException
+     */
     private function updateContext(UserEmailCredential $credential)
     {
-        app(UpdateCredentialPassword::class, [
-            'request' => (new UpdateCredentialPasswordRequest())
+        (new UpdateCredentialPassword(
+            (new UpdateCredentialPasswordRequest())
                 ->setCredential($credential)
                 ->setPassword($this->request->password)
-        ])->execute();
+        ))->execute();
     }
 }

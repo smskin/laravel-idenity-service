@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserPhoneCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Actions\CreateCredentialContext;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\CreateCredentialRequest;
@@ -20,6 +21,7 @@ class CCreateCredential extends BaseController
      * @return static
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
+     * @throws ValidationException
      */
     public function execute(): static
     {
@@ -58,10 +60,12 @@ class CCreateCredential extends BaseController
         }
     }
 
+    /**
+     * @return UserPhoneCredential
+     * @throws ValidationException
+     */
     private function createCredential(): UserPhoneCredential
     {
-        return app(CreateCredentialContext::class, [
-            'request' => $this->request
-        ])->execute()->getResult();
+        return (new CreateCredentialContext($this->request))->execute()->getResult();
     }
 }

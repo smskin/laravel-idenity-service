@@ -48,7 +48,7 @@ class OAuthController extends Controller
      */
     public function validateSignature(GetOAuthLinkRequest $request): JsonResponse
     {
-        $result = app(SignatureModule::class)->validate(
+        $result = (new SignatureModule)->validate(
             (new ValidateSignatureRequest)
                 ->setValue(sha1($request->input('callback-url')))
                 ->setSalt($request->input('key'))

@@ -42,9 +42,7 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        return app(CRegister::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CRegister($request))->execute()->getResult();
     }
 
     /**
@@ -58,9 +56,7 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        return app(CValidate::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CValidate($request))->execute()->getResult();
     }
 
     /**
@@ -76,9 +72,7 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        return app(CLogin::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CLogin($request))->execute()->getResult();
     }
 
     /**
@@ -92,9 +86,7 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        app(SendPhoneVerificationCode::class, [
-            'request' => $request
-        ])->execute();
+        return (new SendPhoneVerificationCode($request))->execute()->getResult();
     }
 
     /**
@@ -109,9 +101,7 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        return app(CAssignEmail::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CAssignEmail($request))->execute()->getResult();
     }
 
     /**
@@ -121,33 +111,14 @@ class AuthModule extends BaseModule
      * @throws Exceptions\InvalidPassword
      * @throws Exceptions\ThisIdentifyAlreadyUsesByAnotherUser
      * @throws Exceptions\UserAlreadyHasCredentialWithThisIdentify
+     * @throws Exceptions\VerificationAlreadyCanceled
      * @throws ValidationException
      */
     public function assignPhoneToUserByCode(AssignPhoneToUserRequest $request): UserPhoneCredential
     {
         $request->validate();
 
-        return app(CAssignPhoneToUser::class, [
-            'request' => $request
-        ])->execute()->getResult();
-    }
-
-    /**
-     * @param AssignPhoneToUserRequest $request
-     * @return UserPhoneCredential
-     * @throws Exceptions\DisabledDriver
-     * @throws Exceptions\InvalidPassword
-     * @throws Exceptions\ThisIdentifyAlreadyUsesByAnotherUser
-     * @throws Exceptions\UserAlreadyHasCredentialWithThisIdentify
-     * @throws ValidationException
-     */
-    public function assignPhoneToUser(AssignPhoneToUserRequest $request): UserPhoneCredential
-    {
-        $request->validate();
-
-        return app(CAssignPhoneToUser::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CAssignPhoneToUser($request))->execute()->getResult();
     }
 
     /**
@@ -162,8 +133,6 @@ class AuthModule extends BaseModule
     {
         $request->validate();
 
-        app(CDeleteCredential::class, [
-            'request' => $request
-        ])->execute();
+        return (new CDeleteCredential($request))->execute()->getResult();
     }
 }

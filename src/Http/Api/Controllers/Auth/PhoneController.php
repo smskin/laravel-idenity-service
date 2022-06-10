@@ -59,7 +59,7 @@ class PhoneController extends Controller
     public function submitPhoneVerificationCode(SubmitPhoneVerificationCodeRequest $request): JsonResponse
     {
         try {
-            app(AuthModule::class)->sendPhoneVerificationCode(
+            (new AuthModule)->sendPhoneVerificationCode(
                 (new SendPhoneVerificationCodeRequest)->setPhone(
                     $request->input('phone')
                 )
@@ -107,7 +107,7 @@ class PhoneController extends Controller
     public function registerByPhone(RegisterByPhoneRequest $request): JsonResponse
     {
         try {
-            $user = app(AuthModule::class)->registration(
+            $user = (new AuthModule)->registration(
                 (new RegisterRequest)
                     ->setDriver(DriverEnum::PHONE)
                     ->setName($request->input('name'))
@@ -124,7 +124,7 @@ class PhoneController extends Controller
             throw ValidationException::withMessages(['phone' => ['You already has account with this phone']]);
         }
 
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
@@ -173,7 +173,7 @@ class PhoneController extends Controller
     public function authorizeByPhone(AuthorizeByPhoneRequest $request): JsonResponse
     {
         try {
-            $user = app(AuthModule::class)->login(
+            $user = (new AuthModule)->login(
                 (new LoginRequest)
                     ->setDriver(DriverEnum::PHONE)
                     ->setIdentify($request->input('phone'))
@@ -188,7 +188,7 @@ class PhoneController extends Controller
             throw ValidationException::withMessages(['phone' => ['Phone driver is disabled']]);
         }
 
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes($request->input('scopes'))

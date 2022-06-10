@@ -27,12 +27,13 @@ class CInvalidateAccessToken extends BaseController
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function execute(): static
     {
         $jwt = $this->request->jwt ?? $this->decodeToken();
 
-        app(InvalidatedTokenStorage::class)->putJti($jwt->jti);
+        (new InvalidatedTokenStorage)->putJti($jwt->jti);
         return $this;
     }
 
@@ -43,12 +44,13 @@ class CInvalidateAccessToken extends BaseController
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     protected function decodeToken(): JwtContext
     {
-        return app(CDecodeAccessToken::class, [
-            'request' => (new DecodeTokenRequest())
+        return (new CDecodeAccessToken(
+            (new DecodeTokenRequest())
                 ->setToken($this->request->token)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserEmailCredential;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\CreateCredentialContext;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\CreateCredentialRequest;
@@ -20,6 +21,7 @@ class CCreateCredential extends BaseController
      * @return static
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
+     * @throws ValidationException
      */
     public function execute(): static
     {
@@ -57,10 +59,12 @@ class CCreateCredential extends BaseController
         }
     }
 
+    /**
+     * @return UserEmailCredential
+     * @throws ValidationException
+     */
     private function createCredential(): UserEmailCredential
     {
-        return app(CreateCredentialContext::class, [
-            'request' => $this->request
-        ])->execute()->getResult();
+        return (new CreateCredentialContext($this->request))->execute()->getResult();
     }
 }

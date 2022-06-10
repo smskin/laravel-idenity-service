@@ -27,7 +27,7 @@ abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
     private function getDriver(): Driver
     {
         return match ($this->getDriverName()) {
-            DriverEnum::LOG => app(LogDriver::class)
+            DriverEnum::LOG => new LogDriver
         };
     }
 

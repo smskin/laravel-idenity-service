@@ -14,6 +14,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\CredentialWithThisIdentifyNot
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
+use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
 use SMSkin\IdentityService\Modules\Auth\Requests\DeleteCredentialRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\LoginRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\RegisterRequest;
@@ -36,7 +37,7 @@ class Driver implements DriverContract
      */
     public function register(RegisterRequest $request): Model
     {
-        $result = app(PhoneModule::class)->validateCredential(
+        $result = (new PhoneModule)->validateCredential(
             (new ValidateCredentialsRequest)
                 ->setPhone($request->identify)
                 ->setCode($request->password)
@@ -48,12 +49,12 @@ class Driver implements DriverContract
 
         try {
             DB::beginTransaction();
-            $user = app(UserModule::class)->create(
+            $user = (new UserModule)->create(
                 (new CreateUserRequest)
                     ->setName($request->name)
             );
 
-            app(PhoneModule::class)->createCredential(
+            (new PhoneModule)->createCredential(
                 (new CreateCredentialRequest)
                     ->setUser($user)
                     ->setPhone($request->identify)
@@ -71,10 +72,11 @@ class Driver implements DriverContract
      * @param ValidateRequest $request
      * @return bool
      * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
      */
     public function validate(ValidateRequest $request): bool
     {
-        return app(PhoneModule::class)->validateCredential(
+        return (new PhoneModule)->validateCredential(
             (new ValidateCredentialsRequest)
                 ->setPhone($request->identify)
                 ->setCode($request->password)
@@ -86,6 +88,7 @@ class Driver implements DriverContract
      * @return User|null
      * @throws InvalidPassword
      * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
      */
     public function login(LoginRequest $request): ?Model
     {
@@ -119,7 +122,7 @@ class Driver implements DriverContract
             throw new CredentialWithThisIdentifyNotExists();
         }
 
-        app(PhoneModule::class)->deleteCredential(
+        (new PhoneModule)->deleteCredential(
             (new ExistCredentialRequest)->setCredential($credential)
         );
     }

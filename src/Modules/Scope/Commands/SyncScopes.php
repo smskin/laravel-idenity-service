@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Scope\Commands;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\LaravelSupport\BaseCommand;
 use SMSkin\IdentityService\Modules\Scope\Controllers\CSyncScopeGroupsAndScopes;
 
@@ -25,10 +26,11 @@ class SyncScopes extends BaseCommand
      * Execute the console command.
      *
      * @return int
+     * @throws ValidationException
      */
     public function handle(): int
     {
-        app(CSyncScopeGroupsAndScopes::class)->execute();
+        (new CSyncScopeGroupsAndScopes)->execute();
         return 0;
     }
 }

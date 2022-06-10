@@ -24,16 +24,17 @@ class UserModule extends BaseModule
     {
         $request->validate();
 
-        return app(CCreateUser::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CCreateUser($request))->execute()->getResult();
     }
 
+    /**
+     * @param ExistUserRequest $request
+     * @return void
+     * @throws ValidationException
+     */
     public function executeAfterNovaCreated(ExistUserRequest $request): void
     {
-        app(ExecuteAfterNovaCreate::class, [
-            'request' => $request
-        ])->execute();
+        (new ExecuteAfterNovaCreate($request))->execute();
     }
 
     /**
@@ -45,8 +46,6 @@ class UserModule extends BaseModule
     {
         $request->validate();
 
-        return app(CUpdateUser::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CUpdateUser($request))->execute()->getResult();
     }
 }

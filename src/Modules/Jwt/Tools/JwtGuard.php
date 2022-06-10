@@ -24,7 +24,6 @@ use MiladRahimi\Jwt\Exceptions\SigningException;
 use MiladRahimi\Jwt\Exceptions\ValidationException as JwtValidationException;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 use Throwable;
-use function app;
 
 class JwtGuard implements IJwtGuard
 {
@@ -81,7 +80,7 @@ class JwtGuard implements IJwtGuard
         }
 
         try {
-            $this->jwt = app(JwtModule::class)->decodeAccessToken(
+            $this->jwt = (new JwtModule)->decodeAccessToken(
                 (new DecodeTokenRequest)->setToken($token)
             );
         } catch (Throwable) {
@@ -100,7 +99,7 @@ class JwtGuard implements IJwtGuard
      */
     public function validate(array $credentials = []): bool
     {
-        return app(AuthModule::class)->validate(
+        return (new AuthModule)->validate(
             (new ValidateRequest)
                 ->setDriver(DriverEnum::EMAIL)
                 ->setIdentify($credentials['email'])
@@ -124,7 +123,7 @@ class JwtGuard implements IJwtGuard
      */
     public function logout(): void
     {
-        app(JwtModule::class)->invalidateAccessToken(
+        (new JwtModule)->invalidateAccessToken(
             (new InvalidateAccessTokenRequest)->setJwt($this->jwt)
         );
     }

@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserPhoneVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ExistVerificationRequest;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ValidateCredentialsRequest;
@@ -16,11 +17,15 @@ class CValidateVerifyCode extends BaseController
 
     protected ?string $requestClass = ValidateCredentialsRequest::class;
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
+     */
     public function execute(): static
     {
         $verification = $this->getVerification();
-        if (!$verification)
-        {
+        if (!$verification) {
             $this->result = false;
             return $this;
         }
@@ -48,15 +53,17 @@ class CValidateVerifyCode extends BaseController
         return UserPhoneVerification::active()->wherePhone($this->request->phone)->first();
     }
 
+    /**
+     * @param UserPhoneVerification $verification
+     * @return void
+     * @throws VerificationAlreadyCanceled
+     * @throws ValidationException
+     */
     private function cancelVerification(UserPhoneVerification $verification)
     {
-        try {
-            app(CMarkVerificationAsCanceled::class, [
-                'request' => (new ExistVerificationRequest)
-                    ->setVerification($verification)
-            ])->execute();
-        } catch (VerificationAlreadyCanceled) {
-            //not possible
-        }
+        (new CMarkVerificationAsCanceled(
+            (new ExistVerificationRequest)
+                ->setVerification($verification)
+        ))->execute();
     }
 }

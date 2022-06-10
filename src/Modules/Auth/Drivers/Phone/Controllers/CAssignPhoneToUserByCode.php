@@ -10,6 +10,7 @@ use SMSkin\IdentityService\Modules\Auth\Drivers\Phone\Requests\ValidateCredentia
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
+use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
 use Illuminate\Validation\ValidationException;
@@ -26,10 +27,11 @@ class CAssignPhoneToUserByCode extends BaseController
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
      */
     public function execute(): static
     {
-        $result = app(PhoneModule::class)->validateCredential(
+        $result = (new PhoneModule)->validateCredential(
             (new ValidateCredentialsRequest)
                 ->setPhone($this->request->phone)
                 ->setCode($this->request->code)
@@ -38,7 +40,7 @@ class CAssignPhoneToUserByCode extends BaseController
             throw new InvalidPassword();
         }
 
-        $this->result = app(PhoneModule::class)->createCredential(
+        $this->result = (new PhoneModule)->createCredential(
             (new CreateCredentialRequest)
                 ->setUser($this->request->user)
                 ->setPhone($this->request->phone)

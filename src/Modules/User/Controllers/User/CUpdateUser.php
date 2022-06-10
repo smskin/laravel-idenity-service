@@ -3,6 +3,7 @@
 namespace SMSkin\IdentityService\Modules\User\Controllers\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\User;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
@@ -15,11 +16,13 @@ class CUpdateUser extends BaseController
 
     protected ?string $requestClass = UpdateUserRequest::class;
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function execute(): static
     {
-        $this->result = app(UpdateUserContext::class, [
-            'request'=>$this->request
-        ])->execute()->getResult();
+        $this->result = (new UpdateUserContext($this->request))->execute()->getResult();
         return $this;
     }
 

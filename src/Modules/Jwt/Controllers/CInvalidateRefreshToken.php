@@ -19,12 +19,13 @@ class CInvalidateRefreshToken extends CInvalidateAccessToken
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     protected function decodeToken(): JwtContext
     {
-        return app(CDecodeRefreshToken::class, [
-            'request' => (new DecodeTokenRequest())
+        return (new CDecodeRefreshToken(
+            (new DecodeTokenRequest())
                 ->setToken($this->request->token)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 }

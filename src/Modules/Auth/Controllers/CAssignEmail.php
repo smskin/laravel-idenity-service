@@ -30,7 +30,7 @@ class CAssignEmail extends BaseController
     public function execute(): static
     {
         $this->validateDriver();
-        $this->result = app(EmailModule::class)->createCredential(
+        $this->result = (new EmailModule)->createCredential(
             (new CreateCredentialRequest)
                 ->setUser($this->request->user)
                 ->setEmail($this->request->email)

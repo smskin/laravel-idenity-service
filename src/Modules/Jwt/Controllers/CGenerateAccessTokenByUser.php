@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Jwt\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
 use SMSkin\IdentityService\Modules\Jwt\Models\Jwt;
@@ -20,14 +21,15 @@ class CGenerateAccessTokenByUser extends BaseController
      * @return static
      * @throws JsonEncodingException
      * @throws SigningException
+     * @throws ValidationException
      */
     public function execute(): static
     {
-        $this->result = app(CGenerateAccessToken::class, [
-            'request' => (new GenerateAccessTokenRequest)
+        $this->result = (new CGenerateAccessToken(
+            (new GenerateAccessTokenRequest)
                 ->setSubject($this->request->user->identity_uuid)
                 ->setScopes($this->request->scopes)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
         return $this;
     }
 

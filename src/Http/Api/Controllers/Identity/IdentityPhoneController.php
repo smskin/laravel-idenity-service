@@ -14,6 +14,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UnsupportedDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
+use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
 use SMSkin\IdentityService\Modules\Auth\Requests\AssignPhoneToUserRequest;
 use SMSkin\IdentityService\Modules\Auth\Requests\DeleteCredentialRequest;
 use Illuminate\Http\JsonResponse;
@@ -22,7 +23,6 @@ use OpenApi\Annotations\Delete;
 use OpenApi\Annotations\JsonContent;
 use OpenApi\Annotations\Parameter;
 use OpenApi\Annotations\Post;
-use function app;
 use function response;
 
 class IdentityPhoneController extends Controller
@@ -57,13 +57,14 @@ class IdentityPhoneController extends Controller
      * @param AssignPhoneRequest $request
      * @return JsonResponse
      * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
      */
     public function assign(AssignPhoneRequest $request): JsonResponse
     {
         $user = $request->user();
 
         try {
-            app(AuthModule::class)->assignPhoneToUserByCode(
+            (new AuthModule)->assignPhoneToUserByCode(
                 (new AssignPhoneToUserRequest)
                     ->setUser($user)
                     ->setPhone($request->input('phone'))
@@ -108,7 +109,7 @@ class IdentityPhoneController extends Controller
         $user = $request->user();
 
         try {
-            app(AuthModule::class)->deleteCredential(
+            (new AuthModule)->deleteCredential(
                 (new DeleteCredentialRequest)
                     ->setDriver(DriverEnum::PHONE)
                     ->setUser($user)

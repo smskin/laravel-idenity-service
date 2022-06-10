@@ -51,13 +51,18 @@ class CSubmitVerifyCode extends BaseController
         return Str::random();
     }
 
+    /**
+     * @param string $code
+     * @return void
+     * @throws ValidationException
+     */
     private function createVerificationContext(string $code)
     {
-        app(CreateVerificationContext::class, [
-            'request' => (new CreateVerificationContextRequest())
+        (new CreateVerificationContext(
+            (new CreateVerificationContextRequest())
                 ->setPhone($this->request->phone)
                 ->setCode($code)
-        ])->execute();
+        ))->execute();
     }
 
     /**
@@ -67,7 +72,7 @@ class CSubmitVerifyCode extends BaseController
      */
     private function submitVerificationCode(string $code)
     {
-        app(SmsModule::class)->sendMessage(
+        (new SmsModule)->sendMessage(
             (new SendMessageRequest)
                 ->setPhone($this->request->phone)
                 ->setMessage('Одноразовый пароль: ' . $code)

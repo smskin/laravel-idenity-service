@@ -58,7 +58,7 @@ class OAuthController extends Controller
      */
     public function github(OAuthRequest $request): RedirectResponse
     {
-        return app(OAuthModule::class)->getRedirector(
+        return (new OAuthModule)->getRedirector(
             (new GetRedirectorRequest)
                 ->setDriver(DriverEnum::GITHUB)
                 ->setCallback(
@@ -81,7 +81,7 @@ class OAuthController extends Controller
      */
     public function githubCallback(): RedirectResponse
     {
-        return app(OAuthModule::class)->processCallback(
+        return (new OAuthModule)->processCallback(
             (new ProcessCallbackRequest())
                 ->setDriver(DriverEnum::GITHUB)
         );

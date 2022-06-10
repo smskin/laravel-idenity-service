@@ -28,9 +28,7 @@ class GithubDriver extends BaseModule implements Driver
     {
         $request->validate();
 
-        return app(CGetRedirector::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CGetRedirector($request))->execute()->getResult();
     }
 
     /**
@@ -44,8 +42,6 @@ class GithubDriver extends BaseModule implements Driver
     {
         $request->validate();
 
-        return app(CProcessCallback::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CProcessCallback($request))->execute()->getResult();
     }
 }

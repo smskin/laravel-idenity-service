@@ -24,8 +24,8 @@ use OpenApi\Annotations\JsonContent;
 use OpenApi\Annotations\Parameter;
 use OpenApi\Annotations\Post;
 use OpenApi\Annotations\Put;
-use function app;
 use function response;
+use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\UpdatePasswordRequest as ModuleUpdatePasswordRequest;
 
 class IdentityEmailController extends Controller
 {
@@ -65,7 +65,7 @@ class IdentityEmailController extends Controller
         $user = $request->user();
 
         try {
-            app(AuthModule::class)->assignEmailToUser(
+            (new AuthModule)->assignEmailToUser(
                 (new AssignEmailToUserRequest)
                     ->setUser($user)
                     ->setEmail($request->input('email'))
@@ -113,8 +113,8 @@ class IdentityEmailController extends Controller
         $user = $request->user();
 
         try {
-            app(EmailModule::class)->updateCredentialPassword(
-                (new \SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\UpdatePasswordRequest)
+            (new EmailModule)->updateCredentialPassword(
+                (new ModuleUpdatePasswordRequest)
                     ->setUser($user)
                     ->setEmail($request->input('email'))
                     ->setPassword($request->input('password'))
@@ -152,7 +152,7 @@ class IdentityEmailController extends Controller
         $user = $request->user();
 
         try {
-            app(AuthModule::class)->deleteCredential(
+            (new AuthModule)->deleteCredential(
                 (new DeleteCredentialRequest)
                     ->setDriver(DriverEnum::EMAIL)
                     ->setUser($user)

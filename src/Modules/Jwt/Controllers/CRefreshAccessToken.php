@@ -39,6 +39,7 @@ class CRefreshAccessToken extends BaseController
      * @throws JsonEncodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function execute(): static
     {
@@ -70,13 +71,14 @@ class CRefreshAccessToken extends BaseController
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function decodeToken(): JwtContext
     {
-        return app(CDecodeRefreshToken::class, [
-            'request' => (new DecodeTokenRequest())
+        return (new CDecodeRefreshToken(
+            (new DecodeTokenRequest())
                 ->setToken($this->request->token)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 
     /**
@@ -85,14 +87,15 @@ class CRefreshAccessToken extends BaseController
      * @throws InvalidScopes
      * @throws JsonEncodingException
      * @throws SigningException
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function generateAccessToken(JwtContext $jwt): Jwt
     {
-        return app(CGenerateAccessToken::class, [
-            'request' => (new GenerateAccessTokenRequest)
+        return (new CGenerateAccessToken(
+            (new GenerateAccessTokenRequest)
                 ->setSubject($jwt->sub)
                 ->setScopes($this->getScopes($jwt))
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 
     /**
@@ -103,13 +106,14 @@ class CRefreshAccessToken extends BaseController
      * @throws JsonDecodingException
      * @throws SigningException
      * @throws ValidationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     private function revokeToken(JwtContext $jwt)
     {
-        app(CInvalidateAccessToken::class, [
-            'request' => (new InvalidateAccessTokenRequest())
+        (new CInvalidateAccessToken(
+            (new InvalidateAccessTokenRequest())
                 ->setJwt($jwt)
-        ])->execute();
+        ))->execute();
     }
 
     private function getTokenFromMultiThreadCache(): ?Jwt

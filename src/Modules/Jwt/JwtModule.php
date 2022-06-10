@@ -41,9 +41,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        return app(CGenerateAccessToken::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CGenerateAccessToken($request))->execute()->getResult();
     }
 
     /**
@@ -57,9 +55,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        return app(CGenerateAccessTokenByUser::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CGenerateAccessTokenByUser($request))->execute()->getResult();
     }
 
     /**
@@ -76,9 +72,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        return app(CDecodeAccessToken::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CDecodeAccessToken($request))->execute()->getResult();
     }
 
     /**
@@ -95,9 +89,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        return app(CDecodeRefreshToken::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CDecodeRefreshToken($request))->execute()->getResult();
     }
 
     /**
@@ -114,9 +106,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        app(CValidateAccessToken::class, [
-            'request' => $request
-        ])->execute();
+        return (new CValidateAccessToken($request))->execute()->getResult();
     }
 
     /**
@@ -133,9 +123,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        app(CValidateRefreshToken::class, [
-            'request' => $request
-        ])->execute();
+        (new CValidateRefreshToken($request))->execute();
     }
 
     /**
@@ -154,9 +142,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        return app(CRefreshAccessToken::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CRefreshAccessToken($request))->execute()->getResult();
     }
 
     /**
@@ -173,9 +159,7 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        app(CInvalidateAccessToken::class, [
-            'request' => $request
-        ])->execute();
+        (new CInvalidateAccessToken($request))->execute();
     }
 
     /**
@@ -192,8 +176,6 @@ class JwtModule extends BaseModule
     {
         $request->validate();
 
-        app(CInvalidateRefreshToken::class, [
-            'request' => $request
-        ])->execute();
+        (new CInvalidateRefreshToken($request))->execute();
     }
 }

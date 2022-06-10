@@ -30,9 +30,7 @@ class EmailModule extends BaseModule
     {
         $request->validate();
 
-        return app(CCreateCredential::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CCreateCredential($request))->execute()->getResult();
     }
 
     /**
@@ -44,9 +42,7 @@ class EmailModule extends BaseModule
     {
         $request->validate();
 
-        return app(CValidateCredential::class, [
-            'request' => $request
-        ])->execute()->getResult();
+        return (new CValidateCredential($request))->execute()->getResult();
     }
 
     /**
@@ -59,9 +55,7 @@ class EmailModule extends BaseModule
     {
         $request->validate();
 
-        app(CUpdatePassword::class, [
-            'request' => $request
-        ])->execute();
+        (new CUpdatePassword($request))->execute();
     }
 
     /**
@@ -73,8 +67,6 @@ class EmailModule extends BaseModule
     {
         $request->validate();
 
-        app(CDeleteCredential::class, [
-            'request' => $request
-        ])->execute();
+        (new CDeleteCredential($request))->execute();
     }
 }

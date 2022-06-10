@@ -38,11 +38,11 @@ abstract class BaseController extends \SMSkin\LaravelSupport\BaseController
 
     private function getEmailDriver(): EmailDriver
     {
-        return app(EmailDriver::class);
+        return new EmailDriver;
     }
 
     private function getPhoneDriver(): PhoneDriver
     {
-        return app(PhoneDriver::class);
+        return new PhoneDriver;
     }
 }

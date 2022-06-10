@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserEmailCredential;
 use SMSkin\IdentityService\Models\UserEmailVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistCredentialRequest;
@@ -17,6 +18,10 @@ class CCancelVerificationsByCredential extends BaseController
 
     protected ?string $requestClass = ExistCredentialRequest::class;
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function execute(): static
     {
         $verifications = $this->getVerifications();
@@ -37,13 +42,18 @@ class CCancelVerificationsByCredential extends BaseController
             ->get();
     }
 
+    /**
+     * @param UserEmailVerification $verification
+     * @return void
+     * @throws ValidationException
+     */
     private function cancelVerification(UserEmailVerification $verification)
     {
         try {
-            app(CMarkVerificationAsCanceled::class, [
-                'request' => (new ExistVerificationRequest)
+            (new CMarkVerificationAsCanceled(
+                (new ExistVerificationRequest)
                     ->setVerification($verification)
-            ])->execute();
+            ))->execute();
         } catch (VerificationAlreadyCanceled) {
             // not possible
         }

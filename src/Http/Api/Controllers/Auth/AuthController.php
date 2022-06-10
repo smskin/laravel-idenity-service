@@ -15,14 +15,15 @@ use OpenApi\Annotations\JsonContent;
 use OpenApi\Annotations\Parameter;
 use OpenApi\Annotations\Post;
 use SMSkin\IdentityService\Http\Api\Controllers\Controller;
+use SMSkin\IdentityService\Http\Api\Requests\Auth\ImpersonateRequest;
 use SMSkin\IdentityService\Http\Api\Requests\Auth\RefreshJwtRequest;
 use SMSkin\IdentityService\Http\Api\Resources\Auth\RJwt;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidScopes;
 use SMSkin\IdentityService\Modules\Jwt\JwtModule;
+use SMSkin\IdentityService\Modules\Jwt\Requests\GenerateAccessTokenByUserRequest;
 use SMSkin\IdentityService\Modules\Jwt\Requests\RefreshAccessTokenRequest;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
 use SyncMutex;
-use function app;
 use function response;
 
 class AuthController extends Controller
@@ -64,7 +65,7 @@ class AuthController extends Controller
         }
 
         try {
-            $jwt = app(JwtModule::class)->refreshAccessToken(
+            $jwt = (new JwtModule)->refreshAccessToken(
                 (new RefreshAccessTokenRequest)
                     ->setToken($token)
                     ->setScopes($request->input('scopes'))
@@ -77,6 +78,41 @@ class AuthController extends Controller
             $mutex->unlock();
         }
 
+        return response()->json(new RJwt($jwt));
+    }
+
+    /**
+     * @Post(
+     *     path="/identity-service/api/auth/impersonate",
+     *     tags={"Auth"},
+     *     summary="Получение JWT по UUID пользователя",
+     *     @Parameter(
+     *          name="uuid",
+     *          description="UUID пользователя",
+     *          in="query",
+     *          required=true
+     *     ),
+     *     @\OpenApi\Annotations\Response(response="200", description="Successful operation", @JsonContent(ref="#/components/schemas/RJwt")),
+     *     @\OpenApi\Annotations\Response(response="422", description="Validation exception"),
+     *     security={{"apiKey": {}}}
+     * )
+     *
+     * @param ImpersonateRequest $request
+     * @return JsonResponse
+     * @throws JsonEncodingException
+     * @throws SigningException
+     * @throws ValidationException
+     */
+    public function impersonate(ImpersonateRequest $request): JsonResponse
+    {
+        $uuid = $request->input('uuid');
+        $user = $this->getUserModel()::where('identity_uuid', $uuid)->firstOrFail();
+
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
+            (new GenerateAccessTokenByUserRequest)
+                ->setUser($user)
+                ->setScopes($user->getScopes()->pluck('slug')->toArray())
+        );
         return response()->json(new RJwt($jwt));
     }
 }

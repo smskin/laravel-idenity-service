@@ -37,12 +37,12 @@ class Driver implements DriverContract
     {
         try {
             DB::beginTransaction();
-            $user = app(UserModule::class)->create(
+            $user = (new UserModule)->create(
                 (new CreateUserRequest)
                     ->setName($request->name)
             );
 
-            app(EmailModule::class)->createCredential(
+            (new EmailModule)->createCredential(
                 (new CreateCredentialRequest)
                     ->setUser($user)
                     ->setEmail($request->identify)
@@ -64,7 +64,7 @@ class Driver implements DriverContract
      */
     public function validate(ValidateRequest $request): bool
     {
-        return app(EmailModule::class)->validateCredential(
+        return (new EmailModule)->validateCredential(
             (new ValidateCredentialRequest)
                 ->setEmail($request->identify)
                 ->setPassword($request->password)
@@ -108,7 +108,7 @@ class Driver implements DriverContract
             throw new CredentialWithThisIdentifyNotExists();
         }
 
-        app(EmailModule::class)->deleteCredential(
+        (new EmailModule)->deleteCredential(
             (new ExistCredentialRequest)->setCredential($credential)
         );
     }

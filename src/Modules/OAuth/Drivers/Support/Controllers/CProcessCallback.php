@@ -62,12 +62,11 @@ abstract class CProcessCallback extends BaseController
      */
     private function createUser(OauthUser $oauthUser): Model
     {
-        if (!config('identity-service.modules.auth.registration.active', false))
-        {
+        if (!config('identity-service.modules.auth.registration.active', false)) {
             throw new RegistrationDisabled();
         }
 
-        return app(UserModule::class)->create(
+        return (new UserModule)->create(
             (new CreateUserRequest)
                 ->setName($oauthUser->name)
         );
@@ -77,17 +76,18 @@ abstract class CProcessCallback extends BaseController
      * @param User $user
      * @param OauthUser $oauthUser
      * @return UserOauthCredential
+     * @throws ValidationException
      */
     private function createCredential(Model $user, OauthUser $oauthUser): UserOAuthCredential
     {
         $credential = null;
         try {
-            $credential = app(CCreateCredential::class, [
-                'request' => (new CreateCredentialRequest)
+            $credential = (new CCreateCredential(
+                (new CreateCredentialRequest)
                     ->setDriver(DriverEnum::GITHUB)
                     ->setUser($user)
                     ->setRemoteId($oauthUser->id)
-            ])->execute()->getResult();
+            ))->execute()->getResult();
         } catch (CredentialWithThisRemoteIdAlreadyExists) {
             // not possible
         }

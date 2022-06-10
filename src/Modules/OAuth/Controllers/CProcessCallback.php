@@ -45,7 +45,7 @@ class CProcessCallback extends BaseController
         if (!$callback) {
             abort(403);
         }
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
@@ -87,7 +87,7 @@ class CProcessCallback extends BaseController
         return $callback->url . '?' . http_build_query(
                 [
                     'value' => $encodedJwt,
-                    'signature' => app(SignatureModule::class)->generate(
+                    'signature' => (new SignatureModule)->generate(
                         (new GenerateSignatureRequest)
                             ->setValue(sha1($encodedJwt))
                             ->setSalt($callback->key)

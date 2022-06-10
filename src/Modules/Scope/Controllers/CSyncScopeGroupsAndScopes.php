@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Scope\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\Scope;
 use SMSkin\IdentityService\Models\ScopeGroup;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
@@ -25,6 +26,10 @@ class CSyncScopeGroupsAndScopes extends BaseController
 {
     use ClassFromConfig;
 
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function execute(): static
     {
         $groupIds = [];
@@ -46,66 +51,87 @@ class CSyncScopeGroupsAndScopes extends BaseController
         return $this;
     }
 
+    /**
+     * @param ScopeGroupEnumItem $item
+     * @return ScopeGroup
+     * @throws ValidationException
+     */
     private function getGroup(ScopeGroupEnumItem $item): ScopeGroup
     {
         $group = ScopeGroup::where('slug', $item->id)->first();
         if ($group) {
-            app(UpdateScopeGroupName::class, [
-                'request' => (new UpdateScopeGroupNameRequest())
+            (new UpdateScopeGroupName(
+                (new UpdateScopeGroupNameRequest())
                     ->setGroup($group)
                     ->setName($item->title)
-            ])->execute();
+            ))->execute();
             return $group;
         }
 
-        return app(CreateScopeGroup::class, [
-            'request' => (new CreateScopeGroupRequest())
+        return (new CreateScopeGroup(
+            (new CreateScopeGroupRequest())
                 ->setName($item->title)
                 ->setSlug($item->id)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 
+    /**
+     * @param ScopeGroup $group
+     * @param EnumItem $item
+     * @return Scope
+     * @throws ValidationException
+     */
     private function updateScope(ScopeGroup $group, EnumItem $item): Scope
     {
         $scope = Scope::where('group_id', $group->id)->where('slug', $item->id)->first();
         if ($scope) {
-            app(UpdateScopeName::class, [
-                'request' => (new UpdateScopeNameRequest())
+            (new UpdateScopeName(
+                (new UpdateScopeNameRequest())
                     ->setScope($scope)
                     ->setName($item->title)
-            ])->execute();
+            ))->execute();
             return $scope;
         }
 
-        return app(CreateScope::class, [
-            'request' => (new CreateScopeRequest())
+        return (new CreateScope(
+            (new CreateScopeRequest())
                 ->setGroup($group)
                 ->setName($item->title)
                 ->setSlug($item->id)
-        ])->execute()->getResult();
+        ))->execute()->getResult();
     }
 
+    /**
+     * @param array $groupIds
+     * @return void
+     * @throws ValidationException
+     */
     private function dropUnusedGroups(array $groupIds)
     {
         if (!count($groupIds)) {
             return;
         }
 
-        app(DeleteScopeGroupsExcludeRequested::class, [
-            'request' => (new DeleteScopesGroupsExcludeRequestedRequest())
+        (new DeleteScopeGroupsExcludeRequested(
+            (new DeleteScopesGroupsExcludeRequestedRequest())
                 ->setIds($groupIds)
-        ])->execute();
+        ))->execute();
     }
 
+    /**
+     * @param array $scopeIds
+     * @return void
+     * @throws ValidationException
+     */
     private function dropUnusedScopes(array $scopeIds)
     {
         if (!count($scopeIds)) {
             return;
         }
 
-        app(DeleteScopesExcludeRequested::class, [
-            'request' => (new DeleteScopesExcludeRequestedRequest())
+        (new DeleteScopesExcludeRequested(
+            (new DeleteScopesExcludeRequestedRequest())
                 ->setIds($scopeIds)
-        ])->execute();
+        ))->execute();
     }
 }

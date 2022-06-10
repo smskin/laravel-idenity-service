@@ -71,7 +71,7 @@ class EmailController extends Controller
     public function registerByEmail(RegisterByEmailRequest $request): JsonResponse
     {
         try {
-            $user = app(AuthModule::class)->registration(
+            $user = (new AuthModule)->registration(
                 (new RegisterRequest)
                     ->setDriver(DriverEnum::EMAIL)
                     ->setName($request->input('name'))
@@ -86,7 +86,7 @@ class EmailController extends Controller
             throw ValidationException::withMessages(['email' => ['You already has account with this email']]);
         }
 
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes([
@@ -126,7 +126,7 @@ class EmailController extends Controller
     public function validateByEmail(ValidateEmailCredentialsRequest $request): JsonResponse
     {
         try {
-            $result = app(AuthModule::class)->validate(
+            $result = (new AuthModule)->validate(
                 (new ValidateRequest)
                     ->setDriver(DriverEnum::EMAIL)
                     ->setIdentify($request->input('email'))
@@ -177,7 +177,7 @@ class EmailController extends Controller
     public function authorizeByEmail(AuthorizeByEmailRequest $request): JsonResponse
     {
         try {
-            $user = app(AuthModule::class)->login(
+            $user = (new AuthModule)->login(
                 (new LoginRequest)
                     ->setDriver(DriverEnum::EMAIL)
                     ->setIdentify($request->input('email'))
@@ -192,7 +192,7 @@ class EmailController extends Controller
             throw ValidationException::withMessages(['email' => ['Email driver is disabled']]);
         }
 
-        $jwt = app(JwtModule::class)->generateAccessTokenByUser(
+        $jwt = (new JwtModule)->generateAccessTokenByUser(
             (new GenerateAccessTokenByUserRequest)
                 ->setUser($user)
                 ->setScopes($request->input('scopes'))

@@ -10,6 +10,7 @@ use SMSkin\IdentityService\Modules\Auth\Exceptions\DisabledDriver;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\InvalidPassword;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\ThisIdentifyAlreadyUsesByAnotherUser;
 use SMSkin\IdentityService\Modules\Auth\Exceptions\UserAlreadyHasCredentialWithThisIdentify;
+use SMSkin\IdentityService\Modules\Auth\Exceptions\VerificationAlreadyCanceled;
 use SMSkin\IdentityService\Modules\Auth\Requests\AssignPhoneToUserRequest;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
@@ -28,11 +29,12 @@ class CAssignPhoneToUser extends BaseController
      * @throws ThisIdentifyAlreadyUsesByAnotherUser
      * @throws UserAlreadyHasCredentialWithThisIdentify
      * @throws ValidationException
+     * @throws VerificationAlreadyCanceled
      */
     public function execute(): static
     {
         $this->validateDriver();
-        $this->result = app(PhoneModule::class)->assignPhoneToUserByCode(
+        $this->result = (new PhoneModule)->assignPhoneToUserByCode(
             (new AssignPhoneToUserByCodeRequest())
                 ->setUser($this->request->user)
                 ->setPhone($this->request->phone)

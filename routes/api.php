@@ -8,6 +8,7 @@ use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityEmailController
 use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityPhoneController;
 use SMSkin\IdentityService\Http\Api\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
+use SMSkin\IdentityService\Http\Api\Middleware\ApiToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::prefix('auth')->group(function () {
             ->withoutMiddleware(['throttle:api'])
             ->middleware(['throttle:unlimited']);
     });
+
+    Route::post('impersonate', [AuthController::class, 'impersonate'])
+        ->middleware([ApiToken::class]);
 });
 
 Route::prefix('oauth')->group(function () {

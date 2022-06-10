@@ -2,6 +2,7 @@
 
 namespace SMSkin\IdentityService\Modules\Auth\Drivers\Email\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\UserEmailVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Actions\RemoveVerification;
 use SMSkin\IdentityService\Modules\Auth\Drivers\Email\Requests\ExistVerificationRequest;
@@ -10,6 +11,10 @@ use Illuminate\Support\Collection;
 
 class CRemoveInactiveVerifications extends BaseController
 {
+    /**
+     * @return $this
+     * @throws ValidationException
+     */
     public function execute(): static
     {
         $verifications = $this->getVerifications();
@@ -27,11 +32,16 @@ class CRemoveInactiveVerifications extends BaseController
         return UserEmailVerification::inactive()->get();
     }
 
+    /**
+     * @param UserEmailVerification $verification
+     * @return void
+     * @throws ValidationException
+     */
     private function removeVerification(UserEmailVerification $verification)
     {
-        app(RemoveVerification::class, [
-            'request' => (new ExistVerificationRequest)
+        (new RemoveVerification(
+            (new ExistVerificationRequest)
                 ->setVerification($verification)
-        ])->execute();
+        ))->execute();
     }
 }
