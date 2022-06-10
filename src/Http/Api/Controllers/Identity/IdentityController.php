@@ -128,7 +128,7 @@ class IdentityController extends Controller
     /**
      * @Post(
      *     path="/identity-service/api/identity/impersonate",
-     *     tags={"Auth"},
+     *     tags={"Identity"},
      *     summary="Получение JWT по UUID пользователя",
      *     @Parameter(
      *          name="uuid",
