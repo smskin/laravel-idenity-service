@@ -145,7 +145,7 @@ class UserController extends Controller
      * @Put(
      *     path="/identity-service/api/users/{userId}",
      *     tags={"Users"},
-     *     summary="Получение списка пользователей",
+     *     summary="Обновление данных пользователя",
      *     @Parameter(
      *          name="name",
      *          description="Имя пользователя",
