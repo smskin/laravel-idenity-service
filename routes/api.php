@@ -8,6 +8,9 @@ use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityEmailController
 use SMSkin\IdentityService\Http\Api\Controllers\Identity\IdentityPhoneController;
 use SMSkin\IdentityService\Http\Api\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
+use SMSkin\IdentityService\Http\Api\Controllers\ScopeController;
+use SMSkin\IdentityService\Http\Api\Controllers\ScopeGroupController;
+use SMSkin\IdentityService\Http\Api\Controllers\UserController;
 use SMSkin\IdentityService\Http\Api\Middleware\ApiToken;
 
 /*
@@ -67,5 +70,29 @@ Route::prefix('identity')->group(function () {
     Route::prefix('phone')->group(function () {
         Route::post('/', [IdentityPhoneController::class, 'assign']);
         Route::delete('/', [IdentityPhoneController::class, 'deletePhone']);
+    });
+});
+
+Route::prefix('scope-groups')->group(function () {
+    Route::get('/', [ScopeGroupController::class, 'getList']);
+    Route::prefix('{groupId}')->group(function () {
+        Route::get('scopes', [ScopeGroupController::class, 'getScopes']);
+    });
+});
+
+Route::prefix('scopes')->group(function () {
+    Route::get('/', [ScopeController::class, 'getList']);
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'getList']);
+    Route::post('/', [UserController::class, 'create']);
+    Route::prefix('{userId}')->group(function () {
+        Route::get('/', [UserController::class, 'show']);
+        Route::put('/', [UserController::class, 'update']);
+        Route::get('scope-groups', [UserController::class, 'getScopeGroups']);
+        Route::post('scope-groups', [UserController::class, 'assignScopeGroup']);
+        Route::get('scopes', [UserController::class, 'getScopes']);
+        Route::post('scopes', [UserController::class, 'assignScope']);
     });
 });

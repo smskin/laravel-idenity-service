@@ -83,8 +83,14 @@ Steps for render documentation:
 1. Run `composer require darkaonline/l5-swagger`
 2. Run `php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"`
 3. Open `l5-swagger.php` in config folder
-4. Add in `annotations` section (line 41 in default config file) after `base_path('app')` new element of
-   array `base_path('vendor/smskin/laravel-identity-service/src/Http')`
+4. Add in `annotations` section (line 41 in default config file) after `base_path('app')` new elements of
+   array 
+```php
+...
+base_path('vendor/smskin/laravel-identity-service/src/Http'), 
+base_path('vendor/smskin/laravel-support/src/Resources')
+...
+```
 5. Add swagger info section to any base http controller (example below)
 6. Run `php artisan l5-swagger:generate`
 7. Open swagger documentation page (by default: `http://localhost/api/documentation`)

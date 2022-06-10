@@ -16,6 +16,16 @@ trait IdentityTrait
 {
     use BaseTrait;
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getIdentityUuid(): string
+    {
+        return $this->identity_uuid;
+    }
+
     /**
      * @return Collection<Scope>
      */

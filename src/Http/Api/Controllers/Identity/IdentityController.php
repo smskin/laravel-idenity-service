@@ -18,7 +18,7 @@ use SMSkin\IdentityService\Http\Api\Controllers\Controller;
 use SMSkin\IdentityService\Http\Api\Requests\Identity\ImpersonateRequest;
 use SMSkin\IdentityService\Http\Api\Resources\Auth\RJwt;
 use SMSkin\IdentityService\Http\Api\Resources\Identity\RIdentity;
-use SMSkin\IdentityService\Http\Api\Resources\Identity\RScopeCollection;
+use SMSkin\IdentityService\Http\Api\Resources\Identity\RIdentityScopeCollection;
 use SMSkin\IdentityService\Http\Api\Resources\ROperationResult;
 use SMSkin\IdentityService\Modules\Jwt\JwtModule;
 use SMSkin\IdentityService\Modules\Jwt\Requests\GenerateAccessTokenByUserRequest;
@@ -61,7 +61,7 @@ class IdentityController extends Controller
      *     path="/identity-service/api/identity/scopes",
      *     tags={"Identity"},
      *     summary="Получение данных пользователя",
-     *     @\OpenApi\Annotations\Response(response="200", description="Successful operation", @JsonContent(type="array", @Items(ref="#/components/schemas/RScope"))),
+     *     @\OpenApi\Annotations\Response(response="200", description="Successful operation", @JsonContent(type="array", @Items(ref="#/components/schemas/RIdentityScope"))),
      *     security={{"bearerAuth": {}}}
      * )
      *
@@ -72,7 +72,7 @@ class IdentityController extends Controller
     {
         $user = $request->user();
 
-        return response()->json((new RScopeCollection($user->getScopes())));
+        return response()->json((new RIdentityScopeCollection($user->getScopes())));
     }
 
     /**

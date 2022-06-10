@@ -10,7 +10,7 @@ use OpenApi\Annotations\Schema;
 /**
  * @Schema
  */
-class RScope extends JsonResource
+class RIdentityScope extends JsonResource
 {
     /**
      * @Property

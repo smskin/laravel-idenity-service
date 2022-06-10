@@ -4,6 +4,10 @@ namespace SMSkin\IdentityService\Modules\User;
 
 use Illuminate\Database\Eloquent\Model;
 use SMSkin\IdentityService\Models\User;
+use SMSkin\IdentityService\Modules\User\Controllers\Scope\CAssignScopeToUser;
+use SMSkin\IdentityService\Modules\User\Controllers\ScopeGroup\CAssignScopeGroupToUser;
+use SMSkin\IdentityService\Modules\User\Requests\Scope\AssignScopeToUserRequest;
+use SMSkin\IdentityService\Modules\User\Requests\ScopeGroup\AssignScopeGroupToUserRequest;
 use SMSkin\LaravelSupport\BaseModule;
 use SMSkin\IdentityService\Modules\User\Controllers\User\CCreateUser;
 use SMSkin\IdentityService\Modules\User\Controllers\User\CUpdateUser;
@@ -47,5 +51,27 @@ class UserModule extends BaseModule
         $request->validate();
 
         return (new CUpdateUser($request))->execute()->getResult();
+    }
+
+    /**
+     * @param AssignScopeGroupToUserRequest $request
+     * @return void
+     * @throws ValidationException
+     * @throws Exceptions\ScopeGroupAlreadyAssigned
+     */
+    public function assignScopeGroup(AssignScopeGroupToUserRequest $request)
+    {
+        (new CAssignScopeGroupToUser($request))->execute();
+    }
+
+    /**
+     * @param AssignScopeToUserRequest $request
+     * @return void
+     * @throws ValidationException
+     * @throws Exceptions\ScopeAlreadyAssigned
+     */
+    public function assignScope(AssignScopeToUserRequest $request)
+    {
+        (new CAssignScopeToUser($request))->execute();
     }
 }

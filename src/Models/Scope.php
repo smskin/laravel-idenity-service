@@ -30,4 +30,10 @@ class Scope extends Model
     {
         return $this->belongsTo(ScopeGroup::class, 'group_id', 'id');
     }
+
+    public function getGroup(): ScopeGroup
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        return $this->group;
+    }
 }

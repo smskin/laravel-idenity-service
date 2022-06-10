@@ -4,9 +4,11 @@ namespace SMSkin\IdentityService\Modules\User\Controllers\User;
 
 use Illuminate\Validation\ValidationException;
 use SMSkin\IdentityService\Models\Scope;
+use SMSkin\IdentityService\Modules\User\Controllers\Scope\CAssignScopeToUser;
+use SMSkin\IdentityService\Modules\User\Exceptions\ScopeAlreadyAssigned;
+use SMSkin\IdentityService\Modules\User\UserModule;
 use SMSkin\LaravelSupport\BaseController;
 use SMSkin\LaravelSupport\BaseRequest;
-use SMSkin\IdentityService\Modules\User\Actions\Scope\AssignScopeToUser;
 use SMSkin\IdentityService\Modules\User\Requests\Scope\AssignScopeToUserRequest;
 use SMSkin\IdentityService\Modules\User\Requests\User\ExistUserRequest;
 use SMSkin\IdentityService\Traits\ClassFromConfig;
@@ -35,10 +37,14 @@ class ExecuteAfterNovaCreate extends BaseController
      */
     private function appendDefaultScope(): void
     {
-        (new AssignScopeToUser(
-            (new AssignScopeToUserRequest)
-                ->setUser($this->request->user)
-                ->setScope(Scope::where('slug', self::getSystemChangeScope())->firstOrFail())
-        ))->execute();
+        try {
+            (new UserModule())->assignScope(
+                (new AssignScopeToUserRequest)
+                    ->setUser($this->request->user)
+                    ->setScope(Scope::where('slug', self::getSystemChangeScope())->firstOrFail())
+            );
+        } catch (ScopeAlreadyAssigned) {
+            // not possible
+        }
     }
 }
