@@ -22,9 +22,7 @@ return [
     'name' => env('IDENTITY_SERVICE_NAME', 'Identity service'),
     'classes' => [
         'models' => [
-            'user' => User::class,
-            'scope' => Scope::class,
-            'scope_group' => ScopeGroup::class
+            'user' => User::class
         ],
         'enums' => [
             'scope_groups' => ScopeGroups::class
