@@ -1,13 +1,6 @@
 <?php
 
-use SMSkin\IdentityService\Models\Scope;
-use SMSkin\IdentityService\Models\ScopeGroup;
 use SMSkin\IdentityService\Models\User;
-use SMSkin\IdentityService\Models\UserEmailCredential;
-use SMSkin\IdentityService\Models\UserEmailVerification;
-use SMSkin\IdentityService\Models\UserOAuthCredential;
-use SMSkin\IdentityService\Models\UserPhoneCredential;
-use SMSkin\IdentityService\Models\UserPhoneVerification;
 use SMSkin\IdentityService\Modules\Auth\Enums\DriverEnum as AuthDriverEnum;
 use SMSkin\IdentityService\Modules\OAuth\Enums\DriverEnum as OAuthDriverEnum;
 use SMSkin\IdentityService\Modules\Sms\Drivers\Log\LogDriver;
